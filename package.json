@@ -13,26 +13,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Izocel/n8n-nodes-viridem"
+    "url": "https://github.com/Izocel/n8n-nodes-viridem.git"
   },
   "engines": {
     "node": ">=20.15"
   },
   "main": "index.js",
   "scripts": {
-    "build": "npx rimraf dist && tsc && npx gulp build:icons",
+    "build": "tsc && gulp build:icons",
     "dev": "tsc --watch",
-    "format": "prettier nodes credentials --write",
-    "lint": "eslint nodes credentials package.json",
-    "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
-    "postinstall": "npm outdated >outdated.md || echo ok"
+    "format": "prettier nodes --write",
+    "lint": "eslint nodes package.json",
+    "lintfix": "eslint nodes package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes package.json"
   },
+  "files": [
+    "dist"
+  ],
   "n8n": {
     "n8nNodesApiVersion": 1,
-    "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js"
-    ],
+    "credentials": [],
     "nodes": [
       "dist/nodes/Viridem/Viridem.node.js"
     ]
