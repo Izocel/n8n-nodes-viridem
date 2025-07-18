@@ -22,7 +22,7 @@ export class Viridem implements INodeType {
 		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
-				name: 'ViridemOauth',
+				name: 'viridemPasswordOAuth2Api',
 				required: true,
 			},
 		],
