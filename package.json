@@ -2,33 +2,18 @@
   "name": "n8n-nodes-viridem-api",
   "version": "1.0.0",
   "description": "Viridem-Api n8n nodes",
-  "keywords": [
-    "n8n-community-node-package"
-  ],
   "license": "MIT",
-  "homepage": "https://github.com/Izocel/n8n-nodes-viridem",
+  "homepage": "https://github.com/Izocel/n8n-nodes-viridem-api",
   "author": {
     "name": "Izocel",
     "email": "triangle1232009@hotmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Izocel/n8n-nodes-viridem.git"
+    "url": "https://github.com/Izocel/n8n-nodes-viridem-api.git"
   },
-  "engines": {
-    "node": ">=20.15"
-  },
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc && gulp build:icons",
-    "dev": "tsc --watch",
-    "format": "prettier nodes --write",
-    "lint": "eslint nodes package.json",
-    "lintfix": "eslint nodes package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes package.json"
-  },
-  "files": [
-    "dist"
+  "keywords": [
+    "n8n-community-node-package"
   ],
   "n8n": {
     "n8nNodesApiVersion": 1,
@@ -36,6 +21,17 @@
     "nodes": [
       "dist/nodes/Viridem/Viridem.node.js"
     ]
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes --write",
+    "lint": "eslint nodes package.json",
+    "lintfix": "eslint nodes package.json --fix",
+    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes package.json"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "latest",
@@ -50,5 +46,8 @@
   },
   "dependencies": {
     "@devlikeapro/n8n-openapi-node": "^0.1.4"
+  },
+  "engines": {
+    "node": ">=20.15"
   }
 }
