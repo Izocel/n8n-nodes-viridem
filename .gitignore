@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+*.tsbuildinfo
+.tmp
+tmp
+dist
+npm-debug.log*
+yarn.lock
+.vscode
+.qodo
