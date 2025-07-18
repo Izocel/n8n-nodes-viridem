@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-viridem-api",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Viridem-Api n8n nodes",
   "license": "MIT",
   "homepage": "https://github.com/Izocel/n8n-nodes-viridem-api",
@@ -17,7 +17,9 @@
   ],
   "n8n": {
     "n8nNodesApiVersion": 1,
-    "credentials": [],
+    "credentials": [
+      "dist/credentials/ViridemOauth.credentials.js"
+    ],
     "nodes": [
       "dist/nodes/Viridem/Viridem.node.js"
     ]
@@ -27,16 +29,9 @@
   ],
   "scripts": {
     "build": "tsc && gulp build:icons",
-    "dev": "tsc --watch",
-    "format": "prettier nodes --write",
-    "lint": "eslint nodes package.json",
-    "lintfix": "eslint nodes package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes package.json"
+    "dev": "tsc --watch"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "latest",
-    "eslint": "latest",
-    "eslint-plugin-n8n-nodes-base": "^1.16.3",
     "gulp": "latest",
     "prettier": "latest",
     "typescript": "latest"

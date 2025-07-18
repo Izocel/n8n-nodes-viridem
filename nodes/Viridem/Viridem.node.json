@@ -3,18 +3,19 @@
 	"nodeVersion": "1.0",
 	"codexVersion": "1.0",
 	"categories": [
+		"Production",
 		"Development",
 		"Developer Tools"
 	],
 	"resources": {
-		"credentialDocumentation": [
-			{
-				"url": "http://httpbin.org/#/Auth/get_bearer"
-			}
-		],
 		"primaryDocumentation": [
 			{
-				"url": "http://httpbin.org/"
+				"url": "https://viridem.ca/"
+			}
+		],
+		"credentialDocumentation": [
+			{
+				"url": "https://viridem.ca/"
 			}
 		]
 	}
