@@ -32,6 +32,9 @@
   ],
   "n8n": {
     "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/ExampleCredentialsApi.credentials.js"
+    ],
     "nodes": [
       "dist/nodes/Viridem/Viridem.node.js"
     ]
