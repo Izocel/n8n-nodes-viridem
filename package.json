@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-viridem",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "",
   "keywords": [
     "n8n-community-node-package"
@@ -8,12 +8,12 @@
   "license": "MIT",
   "homepage": "",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Izocel",
+    "email": "triangle1232009@hotmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/viridem/n8n-nodes-viridem.git"
+    "url": "https://github.com/Izocel/n8n-nodes-viridem"
   },
   "engines": {
     "node": ">=20.15"
@@ -40,17 +40,18 @@
     ]
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "~8.32.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-n8n-nodes-base": "^1.16.3",
-    "gulp": "^5.0.0",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.2"
+    "@typescript-eslint/parser": "*",
+    "eslint": "*",
+    "eslint-plugin-n8n-nodes-base": "*",
+    "gulp": "*",
+    "prettier": "*",
+    "typescript": "*",
+    "n8n": "*"
   },
   "peerDependencies": {
     "n8n-workflow": "*"
   },
   "dependencies": {
-    "@devlikeapro/n8n-openapi-node": "^0.1.4"
+    "@devlikeapro/n8n-openapi-node": "*"
   }
 }
