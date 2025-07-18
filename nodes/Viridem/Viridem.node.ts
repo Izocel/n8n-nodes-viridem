@@ -20,19 +20,15 @@ export class Viridem implements INodeType {
 		},
 		inputs: [NodeConnectionType.Main],
 		outputs: [NodeConnectionType.Main],
+		requestDefaults: {
+			baseURL: '={{$credentials.baseUrl}}',
+		},
 		credentials: [
 			{
 				name: 'viridemPasswordOAuth2Api',
 				required: true,
 			},
 		],
-		requestDefaults: {
-			baseURL: '={{$credentials.url}}',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-		},
 		properties: properties,
 	};
 }
