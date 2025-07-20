@@ -2,22 +2,19 @@
 set -e
 
 echo "🚀 Building n8n Viridem node..."
+rm -rf dist
 
-# Run TypeScript compilation
 echo "📦 Compiling TypeScript..."
 npx tsc
 
-# move assets to dist
 echo "📦 Moving assets..."
 mkdir -p dist/assets
 cp -R src/assets dist
 
-# Copy .env file
-echo "📋 Copying .env file..."
-# cp .env dist/.env
+echo "📋 Moving environments..."
+cp .env* dist/ 2>/dev/null || echo "No .env files found..."
 
-# Copy package.json file
-echo "📋 Copying package.json file..."
+echo "📋 Moving package.json..."
 cp package.json dist/package.json
 
 echo "✅ Build complete! Files are in dist/"

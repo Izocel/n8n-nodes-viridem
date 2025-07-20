@@ -1,35 +1,35 @@
 {
-	"name": "n8n-nodes-viridem-api",
-	"version": "1.3.1",
-	"description": "Viridem-Api n8n nodes",
+	"name": "n8n-nodes-viridem",
+	"version": "1.0.0",
+	"description": "Viridem n8n nodes",
 	"license": "MIT",
-	"homepage": "https://github.com/Izocel/n8n-nodes-viridem-api",
+	"homepage": "https://github.com/Izocel/n8n-nodes-viridem",
 	"author": {
 		"name": "Izocel",
 		"email": "triangle1232009@hotmail.com"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Izocel/n8n-nodes-viridem-api.git"
+		"url": "https://github.com/Izocel/n8n-nodes-viridem.git"
 	},
 	"keywords": [
 		"n8n-community-node-package"
 	],
-	"n8n": {
-		"n8nNodesApiVersion": 1,
-		"credentials": [
-			"dist/credentials/ViridemOauth2.js"
-		],
-		"nodes": [
-			"dist/nodes/Viridem.node.js"
-		]
-	},
 	"files": [
 		"dist"
 	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"credentials": [
+			"dist/credentials/ViridemOAuth2API.js"
+		],
+		"nodes": [
+			"dist/nodes/Viridem.js"
+		]
+	},
 	"scripts": {
 		"dev": "tsc --watch",
-		"prebuild": "chmod +x scripts/* && rm -rf dist",
+		"prebuild": "chmod +x scripts/*",
 		"build": "bash scripts/build.sh",
 		"local-start": "bash scripts/local-start.sh",
 		"local-deploy": "bash scripts/local-deploy.sh",

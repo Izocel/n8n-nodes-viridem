@@ -25,59 +25,8 @@ export class Configs {
 	 * @param key - Environment variable name
 	 * @param defaultValue - Default value if not found
 	 */
-	public get(key: string, defaultValue?: string): string | undefined {
+	public get(key: string, defaultValue: string = ''): string | undefined {
 		return process.env[key] || defaultValue;
-	}
-
-	/**
-	 * Get an environment variable as string (throws if not found and no default)
-	 * @param key - Environment variable name
-	 * @param defaultValue - Default value if not found
-	 */
-	public getString(key: string, defaultValue?: string): string {
-		const value = this.get(key, defaultValue);
-		if (value === undefined) {
-			throw new Error(`Required environment variable '${key}' is not defined`);
-		}
-		return value;
-	}
-
-	/**
-	 * Get an environment variable as number
-	 * @param key - Environment variable name
-	 * @param defaultValue - Default value if not found
-	 */
-	public getNumber(key: string, defaultValue?: number): number {
-		const value = this.get(key);
-		if (value === undefined) {
-			if (defaultValue !== undefined) {
-				return defaultValue;
-			}
-			throw new Error(`Required environment variable '${key}' is not defined`);
-		}
-
-		const numValue = Number(value);
-		if (isNaN(numValue)) {
-			throw new Error(`Environment variable '${key}' is not a valid number: ${value}`);
-		}
-		return numValue;
-	}
-
-	/**
-	 * Get an environment variable as boolean
-	 * @param key - Environment variable name
-	 * @param defaultValue - Default value if not found
-	 */
-	public getBoolean(key: string, defaultValue?: boolean): boolean {
-		const value = this.get(key);
-		if (value === undefined) {
-			if (defaultValue !== undefined) {
-				return defaultValue;
-			}
-			throw new Error(`Required environment variable '${key}' is not defined`);
-		}
-
-		return value.toLowerCase() === 'true' || value === '1';
 	}
 
 	/**
