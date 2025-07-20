@@ -89,6 +89,7 @@
 	"paths": {
 		"/api/v1/companies/{companyId}/columns": {
 			"get": {
+				"operationId": "listColumn",
 				"tags": ["Columns"],
 				"summary": "Retrieve a list of paginated columns",
 				"parameters": [
@@ -150,6 +151,7 @@
 		},
 		"/api/v1/companies/{companyId}/columns/{columnId}": {
 			"get": {
+				"operationId": "getByIdColumn",
 				"tags": ["Columns"],
 				"summary": "Retrieve a list of paginated columns",
 				"parameters": [
@@ -217,6 +219,7 @@
 		},
 		"/api/v1/companies/{companyId}/currencies/getCollection": {
 			"get": {
+				"operationId": "listCurrency",
 				"tags": ["Currencies"],
 				"summary": "Retrieve a list of currencies",
 				"parameters": [
@@ -289,6 +292,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors": {
 			"get": {
+				"operationId": "listDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Retrieve a list of paginated document Anchors",
 				"description": "<span style=\"color:blue\">**Infos:**</span> <br> **Per_page:** This attribute only specify the **maximum potential** result count. <br>Even if there's still more results to be fetched, the result count could be **less or equal** than the asked per_page.<br> <br> **Keywords:** Used for both the simple and advanced search. <br>Required with the **simple search** or if the template id or the template type id **are not provided** with advance search.<br>\n",
@@ -459,6 +463,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/basket": {
 			"get": {
+				"operationId": "listBasketDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Retrieve a list of paginated document Anchors from the basket",
 				"parameters": [
@@ -595,6 +600,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/basket/count": {
 			"get": {
+				"operationId": "countBasketDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Retrieve a list of paginated document Anchors from the basket",
 				"parameters": [
@@ -662,6 +668,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/hasBeenEdited/{documentAnchorId}": {
 			"get": {
+				"operationId": "checkEditedDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Check if the document anchor as been edited by validating the date passed in the query",
 				"parameters": [
@@ -740,6 +747,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}": {
 			"get": {
+				"operationId": "getByIdDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Retrieve a document anchors by its id",
 				"parameters": [
@@ -818,6 +826,7 @@
 				}
 			},
 			"post": {
+				"operationId": "updateDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Update an existing document anchor",
 				"parameters": [
@@ -934,6 +943,7 @@
 				}
 			},
 			"delete": {
+				"operationId": "deleteDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Delete an existing document anchor",
 				"parameters": [
@@ -993,6 +1003,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/resetWorkflow": {
 			"post": {
+				"operationId": "resetWorkflowDocumentAnchor",
 				"deprecated": true,
 				"tags": ["Document Anchors"],
 				"summary": "(Deprecated) - Refer to /api/v2 - Reset the workflow of a document anchor. This endpoint will be removed in next version",
@@ -1053,6 +1064,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/versions": {
 			"get": {
+				"operationId": "getVersionsDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Show the document anchor versions",
 				"parameters": [
@@ -1140,6 +1152,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/history": {
 			"get": {
+				"operationId": "getHistoryDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Show the document anchor history",
 				"parameters": [
@@ -1256,6 +1269,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/rotate": {
 			"post": {
+				"operationId": "rotateDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Rotate the document anchor",
 				"parameters": [
@@ -1335,6 +1349,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/split": {
 			"post": {
+				"operationId": "splitDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Split the document anchor",
 				"parameters": [
@@ -1439,6 +1454,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/reassign": {
 			"post": {
+				"operationId": "reassignDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Reassign some users of the document anchor",
 				"parameters": [
@@ -1529,6 +1545,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/reassignAll": {
 			"post": {
+				"operationId": "reassignAllDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Reassign all users of the document anchor",
 				"parameters": [
@@ -1598,6 +1615,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/redetect": {
 			"post": {
+				"operationId": "redetectDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Redetect the autodetection fields of the document anchor",
 				"parameters": [
@@ -1683,6 +1701,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/file": {
 			"get": {
+				"operationId": "getFileDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Retrieve the file associated to a document anchor",
 				"parameters": [
@@ -1750,6 +1769,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/symbolicLinks": {
 			"get": {
+				"operationId": "getSymbolicLinksDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Retrieve the linked documents of a document anchor",
 				"parameters": [
@@ -1853,6 +1873,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/groupTreatments": {
 			"get": {
+				"operationId": "getGroupTreatmentsDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Retrieve the grouped treatments documents of a document anchor",
 				"parameters": [
@@ -1924,6 +1945,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/groupDocuments": {
 			"get": {
+				"operationId": "getGroupDocumentsDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Retrieve the grouped documents of a document anchor",
 				"parameters": [
@@ -1995,6 +2017,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/noTemplate/count": {
 			"get": {
+				"operationId": "countWithoutTemplateDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Retrieve the count of document anchors without template",
 				"parameters": [
@@ -2052,6 +2075,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/noTemplate": {
 			"get": {
+				"operationId": "listWithoutTemplateDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Retrieve the document anchors without template",
 				"parameters": [
@@ -2167,6 +2191,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/template/{templateId}": {
 			"post": {
+				"operationId": "setTemplateDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Set the template of a document anchor",
 				"parameters": [
@@ -2199,6 +2224,9 @@
 					"200": {
 						"description": "The document anchor template has been set"
 					},
+					"400": {
+						"description": "The document anchor already has a template"
+					},
 					"401": {
 						"description": "A message indicating that the user is unauthenticated",
 						"content": {
@@ -2208,9 +2236,6 @@
 								}
 							}
 						}
-					},
-					"400": {
-						"description": "The document anchor already has a template"
 					},
 					"404": {
 						"description": "The company (X) or the document anchor (X) or the template (X) does not exist",
@@ -2227,6 +2252,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/transition": {
 			"post": {
+				"operationId": "transitionDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Execute the transition of a document anchor",
 				"parameters": [
@@ -2387,6 +2413,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/comments": {
 			"get": {
+				"operationId": "getCommentsDocumentAnchor",
 				"tags": ["Comments"],
 				"summary": "Retrieve the comments associated to a document anchor",
 				"parameters": [
@@ -2459,6 +2486,7 @@
 				}
 			},
 			"post": {
+				"operationId": "addCommentDocumentAnchor",
 				"tags": ["Comments"],
 				"summary": "Add a new comment to a document anchor",
 				"parameters": [
@@ -2536,6 +2564,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/state": {
 			"get": {
+				"operationId": "getStateDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Retrieve a document anchors current state by its anchor id",
 				"parameters": [
@@ -2600,6 +2629,7 @@
 				}
 			},
 			"post": {
+				"operationId": "updateStateDocumentAnchor",
 				"tags": ["Document Anchors"],
 				"summary": "Update the document anchor current state",
 				"parameters": [
@@ -2676,6 +2706,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchors/{documentAnchorId}/annotations/images": {
 			"post": {
+				"operationId": "addAnnotationsDocumentAnchor",
 				"summary": "Add image annotations to a document",
 				"tags": ["Annotations"],
 				"parameters": [
@@ -2727,6 +2758,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenses": {
 			"get": {
+				"operationId": "listExpense",
 				"tags": ["Expenses"],
 				"summary": "Retrieve a list of expenses. If status filters are not defined processing expenses will be ignored.",
 				"parameters": [
@@ -2856,6 +2888,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenses/deleteAttachment": {
 			"post": {
+				"operationId": "deleteAttachmentExpense",
 				"tags": ["Expenses"],
 				"parameters": [
 					{
@@ -2932,6 +2965,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenses/lock": {
 			"post": {
+				"operationId": "lockExpense",
 				"tags": ["Expenses"],
 				"summary": "lock expense",
 				"parameters": [
@@ -3017,6 +3051,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenses/unlock": {
 			"post": {
+				"operationId": "unlockExpense",
 				"tags": ["Expenses"],
 				"summary": "Unlock expense",
 				"parameters": [
@@ -3102,6 +3137,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenses/{id}": {
 			"get": {
+				"operationId": "getByIdExpense",
 				"tags": ["Expenses"],
 				"summary": "Retrieve an expense",
 				"parameters": [
@@ -3170,6 +3206,7 @@
 				}
 			},
 			"delete": {
+				"operationId": "deleteExpense",
 				"tags": ["Expenses"],
 				"summary": "Delete expense",
 				"parameters": [
@@ -3241,6 +3278,7 @@
 				}
 			},
 			"post": {
+				"operationId": "updateExpense",
 				"tags": ["Expenses"],
 				"summary": "Creations, editions and confirmations of expenses",
 				"parameters": [
@@ -3322,6 +3360,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenses/getAiResult/{id}": {
 			"get": {
+				"operationId": "getAiResultExpense",
 				"tags": ["Expenses"],
 				"summary": "Retrieve an expense ai request result",
 				"parameters": [
@@ -3392,6 +3431,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenses/image/{id}": {
 			"get": {
+				"operationId": "getImageExpense",
 				"tags": ["Expenses"],
 				"summary": "Retrieve an expense image assets (thumbnail or full image)",
 				"parameters": [
@@ -3478,6 +3518,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenseProjects/getCollection": {
 			"get": {
+				"operationId": "listExpenseProject",
 				"tags": ["Expense Projects"],
 				"summary": "Retrieve a list of labeled Value collection with entity in option",
 				"parameters": [
@@ -3564,6 +3605,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenses/configurations": {
 			"get": {
+				"operationId": "getConfigurationsExpense",
 				"tags": ["Expenses"],
 				"summary": "Retrieve a list of configurations",
 				"parameters": [
@@ -3622,6 +3664,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenseCategories/getCollection": {
 			"get": {
+				"operationId": "listExpenseCategory",
 				"tags": ["Expense Categories"],
 				"parameters": [
 					{
@@ -3704,6 +3747,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenseReports/publish": {
 			"post": {
+				"operationId": "publishExpenseReport",
 				"tags": ["Expense Reports"],
 				"parameters": [
 					{
@@ -3802,6 +3846,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenseReports/status": {
 			"get": {
+				"operationId": "getStatusExpenseReport",
 				"summary": "Return the status of the report.",
 				"tags": ["Expense Reports"],
 				"parameters": [
@@ -3899,6 +3944,7 @@
 		},
 		"/api/v1/companies/{companyId}/expenseReports/isPublishAvailable": {
 			"get": {
+				"operationId": "checkPublishAvailableExpenseReport",
 				"deprecated": true,
 				"summary": "(Deprecated) - Refer to /status - Return the status of the report. (still used by viridem mobile)",
 				"tags": ["Expense Reports"],
@@ -4017,6 +4063,7 @@
 		},
 		"/api/v1/companies/{companyId}/fields": {
 			"get": {
+				"operationId": "listField",
 				"tags": ["Fields"],
 				"summary": "Retrieve a list of paginated fields",
 				"parameters": [
@@ -4105,6 +4152,7 @@
 		},
 		"/api/v1/companies/{companyId}/fields/count": {
 			"get": {
+				"operationId": "countField",
 				"tags": ["Fields"],
 				"summary": "Retrieve the count of fields",
 				"parameters": [
@@ -4162,6 +4210,7 @@
 		},
 		"/api/v1/companies/{companyId}/fields/{fieldId}": {
 			"get": {
+				"operationId": "getByIdField",
 				"tags": ["Fields"],
 				"summary": "Retrieve a field by its id",
 				"parameters": [
@@ -4222,6 +4271,7 @@
 		},
 		"/api/v1/companies/{companyId}/pendingTransactions": {
 			"get": {
+				"operationId": "listPendingTransaction",
 				"tags": ["PendingTransaction"],
 				"summary": "Retrieve a list of pending transactions",
 				"parameters": [
@@ -4277,6 +4327,7 @@
 		},
 		"/api/v1/companies/{companyId}/documentAnchor/{documentAnchorId}/pendingTransaction": {
 			"get": {
+				"operationId": "getPendingTransactionDocumentAnchor",
 				"tags": ["PendingTransaction"],
 				"summary": "Retrieve a pending transactions from a document anchor id",
 				"parameters": [
@@ -4337,6 +4388,7 @@
 		},
 		"/api/v1/companies/{companyId}/pendingTransactions/{pendingTransactionId}": {
 			"post": {
+				"operationId": "updatePendingTransaction",
 				"tags": ["PendingTransaction"],
 				"summary": "Process a pending transaction",
 				"parameters": [
@@ -4442,6 +4494,7 @@
 		},
 		"/api/v1/companies/{companyId}/taxes/getCollection": {
 			"get": {
+				"operationId": "listTax",
 				"tags": ["Taxes"],
 				"summary": "Retrieve a list of taxes by label value tag. If feedEntity à true, the entity is provided.",
 				"parameters": [
@@ -4514,6 +4567,7 @@
 		},
 		"/api/v1/companies/{companyId}/taxGroups/getCollection": {
 			"get": {
+				"operationId": "listTaxGroup",
 				"tags": ["Tax Groups"],
 				"summary": "Retrieve a list of taxes group",
 				"parameters": [
@@ -4586,6 +4640,7 @@
 		},
 		"/api/v1/companies/{companyId}/taxGroups/{id}": {
 			"get": {
+				"operationId": "getByIdTaxGroup",
 				"tags": ["Tax Groups"],
 				"summary": "Retrieve a tax group whitin the company",
 				"parameters": [
@@ -4669,6 +4724,7 @@
 		},
 		"/api/v1/companies/{companyId}/taxGroups/getLastUsed": {
 			"post": {
+				"operationId": "getLastUsedTaxGroup",
 				"tags": ["Tax Groups"],
 				"summary": "Retrieve a tax group by entity usage in the company",
 				"parameters": [
@@ -4765,6 +4821,7 @@
 		},
 		"/api/v1/companies/{companyId}/templates": {
 			"get": {
+				"operationId": "listTemplate",
 				"tags": ["Templates"],
 				"summary": "Retrieve a list of paginated templates",
 				"parameters": [
@@ -4880,6 +4937,7 @@
 		},
 		"/api/v1/companies/{companyId}/templates/all": {
 			"get": {
+				"operationId": "listAllTemplate",
 				"tags": ["Templates"],
 				"summary": "Retrieve list of all templates",
 				"parameters": [
@@ -4953,6 +5011,7 @@
 		},
 		"/api/v1/companies/{companyId}/templates/{templateId}": {
 			"get": {
+				"operationId": "getByIdTemplate",
 				"tags": ["Templates"],
 				"summary": "Retrieve a template by its id",
 				"parameters": [
@@ -5031,6 +5090,7 @@
 		},
 		"/api/v1/companies/{companyId}/templates/forms": {
 			"get": {
+				"operationId": "listFormsTemplate",
 				"tags": ["Templates"],
 				"summary": "Retrieve list of form templates",
 				"parameters": [
@@ -5113,6 +5173,7 @@
 		},
 		"/api/v1/companies/{companyId}/types": {
 			"get": {
+				"operationId": "listTemplateType",
 				"tags": ["Template Types"],
 				"summary": "Retrieve a list of paginated template types",
 				"parameters": [
@@ -5192,6 +5253,7 @@
 		},
 		"/api/v1/companies/{companyId}/types/{typeId}": {
 			"get": {
+				"operationId": "getByIdTemplateType",
 				"tags": ["Template Types"],
 				"summary": "Retrieve a template type by its id",
 				"parameters": [
@@ -5252,6 +5314,7 @@
 		},
 		"/api/v1/companies/{companyId}/files": {
 			"post": {
+				"operationId": "updateFile",
 				"tags": ["Files"],
 				"summary": "Send a file to Viridem",
 				"parameters": [
@@ -5356,6 +5419,7 @@
 		},
 		"/api/v1/companies/{companyId}/files/multiple": {
 			"post": {
+				"operationId": "uploadMultipleFile",
 				"tags": ["Files"],
 				"summary": "Send files to Viridem",
 				"parameters": [
@@ -5479,6 +5543,7 @@
 		},
 		"/api/v1/companies/{companyId}/files/form": {
 			"post": {
+				"operationId": "createFormFile",
 				"tags": ["Files"],
 				"summary": "Create a new form template document",
 				"parameters": [
@@ -5591,6 +5656,7 @@
 		},
 		"/api/v1/companies/{companyId}/groups": {
 			"get": {
+				"operationId": "listGroup",
 				"tags": ["Groups"],
 				"summary": "Retrieve the groups of the current company",
 				"parameters": [
@@ -5657,6 +5723,7 @@
 		},
 		"/api/v1/companies/{companyId}/stream/documentAnchors/{documentAnchorId}": {
 			"get": {
+				"operationId": "getByIdStream",
 				"tags": ["Streams"],
 				"summary": "Initialize an SSE transceiver for the document.",
 				"parameters": [
@@ -5767,6 +5834,7 @@
 		},
 		"/api/v1/viridem/versions": {
 			"get": {
+				"operationId": "getVersionsViridem",
 				"summary": "Retrieve version informations about Viridem",
 				"tags": ["Viridem"],
 				"responses": {
@@ -5824,6 +5892,7 @@
 		},
 		"/api/v1/users/profile": {
 			"get": {
+				"operationId": "getProfileUser",
 				"summary": "Retrieve the profile for the current logged in user",
 				"tags": ["Users"],
 				"responses": {
@@ -5856,6 +5925,7 @@
 		},
 		"/api/v1/companies/{companyId}/users/getCollection": {
 			"get": {
+				"operationId": "listUser2",
 				"tags": ["Users"],
 				"summary": "Retrieve a list of user (label and value with possibility to load collection)",
 				"parameters": [
@@ -5942,6 +6012,7 @@
 		},
 		"/api/v1/companies/{companyId}/users/profile/access/functionalities": {
 			"get": {
+				"operationId": "getFunctionalityAccessUser",
 				"tags": ["Users"],
 				"summary": "Retrieve the functionalities accesses for the current logged in user",
 				"parameters": [
@@ -5999,6 +6070,7 @@
 		},
 		"/api/v1/companies/{companyId}/users/profile/access/documentAnchors/{documentAnchorId}": {
 			"get": {
+				"operationId": "getAccessUser",
 				"tags": ["Users"],
 				"summary": "Retrieve a document accesses for the current logged in user",
 				"parameters": [
@@ -6049,6 +6121,7 @@
 		},
 		"/api/v1/users/profile/signature": {
 			"get": {
+				"operationId": "getProfileSignatureUser2",
 				"summary": "Retrieve the signature of the profile for the current logged in user",
 				"tags": ["Users"],
 				"responses": {
@@ -6082,6 +6155,7 @@
 		},
 		"/api/v1/companies/{companyId}/users/profile/signature/{templateId}": {
 			"get": {
+				"operationId": "getProfileSignatureUser",
 				"summary": "Retrieve the signature metadata from a template for the current logged in user",
 				"tags": ["Users"],
 				"parameters": [
@@ -6167,6 +6241,7 @@
 		},
 		"/api/v1/companies/{companyId}/users": {
 			"get": {
+				"operationId": "listUser",
 				"summary": "Retrieve the users related to the company",
 				"tags": ["Users"],
 				"parameters": [
@@ -6232,6 +6307,7 @@
 		},
 		"/api/v1/users/{userId}": {
 			"get": {
+				"operationId": "getByIdUser",
 				"tags": ["Users"],
 				"summary": "Retrieve a user by its id",
 				"parameters": [
@@ -6285,6 +6361,7 @@
 		},
 		"/api/v1/companies": {
 			"get": {
+				"operationId": "listCompany",
 				"summary": "Retrieve a list of all the companies linked to the user",
 				"tags": ["Companies"],
 				"responses": {
@@ -6317,6 +6394,7 @@
 		},
 		"/api/v1/companies/{companyId}": {
 			"get": {
+				"operationId": "listCompany2",
 				"summary": "Retrieve a specific company by its id",
 				"tags": ["Companies"],
 				"parameters": [
@@ -6369,6 +6447,7 @@
 		},
 		"/api/v1/companies/{companyId}/externAttachments/{externAttachmentId}/file": {
 			"get": {
+				"operationId": "getFileExternalAttachment",
 				"summary": "Retrieve the file of a specific External Attachment",
 				"tags": ["External Attachments"],
 				"parameters": [
@@ -7951,7 +8030,8 @@
 					"grandTotalsPerCurrency": {
 						"type": "object",
 						"additionalProperties": {
-							"type": "number"
+							"type": "number",
+							"format": "float"
 						},
 						"example": {
 							"currencyCode-currencyId": 585.4612128000001,
