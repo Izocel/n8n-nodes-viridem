@@ -14,7 +14,7 @@ cp -R src/assets dist
 
 # Copy .env file
 echo "📋 Copying .env file..."
-cp .env dist/.env
+# cp .env dist/.env
 
 # Copy package.json file
 echo "📋 Copying package.json file..."
