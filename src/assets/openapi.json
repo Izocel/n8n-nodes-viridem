@@ -21,6 +21,1946 @@
 			"OAuth2": []
 		}
 	],
+	"components": {
+		"schemas": {
+			"200Response": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Process has been succesfull"
+					},
+					"details": {
+						"type": "string"
+					}
+				}
+			},
+			"401Response": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Unauthenticated"
+					}
+				}
+			},
+			"403Response": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "You don't have the rights to access this resource"
+					}
+				}
+			},
+			"404Response": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Resource not found"
+					},
+					"details": {
+						"type": "string",
+						"example": "The X does not exist"
+					}
+				}
+			},
+			"423Response": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string",
+						"example": "Resource is locked"
+					},
+					"details": {
+						"type": "string",
+						"example": "The X has some properties unavailble for edition"
+					}
+				}
+			},
+			"aiResult": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"requestId": {
+						"type": "integer"
+					},
+					"created": {
+						"type": "object",
+						"properties": {
+							"date": {
+								"type": "string"
+							},
+							"timezone_type": {
+								"type": "integer"
+							},
+							"timezone": {
+								"type": "string"
+							}
+						}
+					},
+					"filename": {
+						"type": "string"
+					},
+					"requestType": {
+						"type": "string"
+					},
+					"aiModel": {
+						"type": "integer"
+					},
+					"status": {
+						"type": "integer"
+					},
+					"entityId": {
+						"type": "integer"
+					},
+					"requestUUID": {
+						"type": "string"
+					}
+				}
+			},
+			"aiExpenseResult": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/aiResult"
+					},
+					{
+						"type": "object",
+						"properties": {
+							"result": {
+								"type": "object",
+								"properties": {
+									"invoice_or_receipt": {
+										"type": "string"
+									},
+									"transaction_type": {
+										"type": "string"
+									},
+									"vendor_merchant_supplier_name": {
+										"type": "string"
+									},
+									"vendor_address": {
+										"type": "string"
+									},
+									"vendor_city": {
+										"type": "string"
+									},
+									"vendor_state_province": {
+										"type": "string"
+									},
+									"vendor_country": {
+										"type": "string"
+									},
+									"transaction_date": {
+										"type": "string"
+									},
+									"transaction_date_ymd": {
+										"type": "string"
+									},
+									"subtotal": {
+										"type": "string"
+									},
+									"tps_gst": {
+										"type": "string"
+									},
+									"tvq_tvp": {
+										"type": "string"
+									},
+									"hst_tvh": {
+										"type": "string"
+									},
+									"amount_gratuity_service_tip_pourboire": {
+										"type": "string"
+									},
+									"total": {
+										"type": "string"
+									},
+									"transaction_currency": {
+										"type": "string"
+									},
+									"cc_number_last4": {
+										"type": "string"
+									},
+									"cc_brand": {
+										"type": "string"
+									},
+									"note": {
+										"type": "string"
+									},
+									"document_title": {
+										"type": "string",
+										"items": {
+											"type": "array",
+											"items": {
+												"$ref": "#/components/schemas/aiExpenseResultItem"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				]
+			},
+			"aiExpenseResultItem": {
+				"type": "object",
+				"properties": {
+					"item_qty": {
+						"type": "string"
+					},
+					"item_name": {
+						"type": "string"
+					},
+					"item_total": {
+						"type": "string"
+					}
+				}
+			},
+			"globalColumn": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"typeId": {
+						"type": "integer"
+					}
+				}
+			},
+			"detailsParametersBlockedAutomaticTransition": {
+				"type": "object",
+				"properties": {
+					"step": {
+						"type": "integer"
+					},
+					"workflow": {
+						"type": "string"
+					},
+					"errorMessage": {
+						"type": "string"
+					}
+				}
+			},
+			"detailsParametersAddingDocumentDetails": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"user": {
+							"type": "string"
+						},
+						"reassign": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"detailsParametersTransitionDetails": {
+				"type": "object",
+				"properties": {
+					"workflow": {
+						"type": "string"
+					},
+					"step": {
+						"type": "string"
+					},
+					"toStep": {
+						"type": "string"
+					},
+					"transition": {
+						"type": "string"
+					},
+					"program": {
+						"type": "string"
+					},
+					"isBypass": {
+						"type": "boolean",
+						"nullable": true
+					}
+				}
+			},
+			"detailsParametersReassignUserToUserDetails": {
+				"type": "object",
+				"properties": {
+					"reassignments": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"user": {
+									"type": "string"
+								},
+								"reassign": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"detailsParametersDelegateDetails": {
+				"type": "object",
+				"properties": {
+					"email": {
+						"type": "string"
+					}
+				}
+			},
+			"detailsParametersDefaultValue": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"name": {
+							"type": "string"
+						},
+						"value": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"documentStateRequest": {
+				"type": "object",
+				"properties": {
+					"assertViewed": {
+						"type": "boolean",
+						"default": null
+					}
+				}
+			},
+			"comment": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"creator": {
+						"type": "object",
+						"$ref": "#/components/schemas/basicUserInfo"
+					},
+					"createdDate": {
+						"type": "object",
+						"$ref": "#/components/schemas/createdAt"
+					},
+					"editorId": {
+						"type": "integer"
+					},
+					"htmlValue": {
+						"type": "string"
+					},
+					"parentId": {
+						"type": "integer"
+					},
+					"children": {
+						"nullable": true,
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/comment"
+						}
+					}
+				}
+			},
+			"company": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"active": {
+						"type": "boolean"
+					},
+					"db_name": {
+						"type": "string"
+					}
+				}
+			},
+			"companies": {
+				"type": "array",
+				"items": {
+					"$ref": "#/components/schemas/company"
+				}
+			},
+			"expenseRequest": {
+				"type": "object",
+				"required": ["categoryId"],
+				"properties": {
+					"categoryId": {
+						"type": "integer"
+					},
+					"userId": {
+						"type": "integer"
+					},
+					"date": {
+						"type": "string",
+						"format": "date"
+					},
+					"amount": {
+						"type": "number",
+						"format": "float"
+					},
+					"tipAmount": {
+						"type": "number",
+						"format": "float"
+					},
+					"description": {
+						"type": "string"
+					},
+					"projectId": {
+						"type": "string"
+					},
+					"attachment": {
+						"type": "integer"
+					},
+					"currencyId": {
+						"type": "integer"
+					},
+					"currencyCode": {
+						"type": "integer"
+					},
+					"taxGroupId": {
+						"type": "integer"
+					},
+					"taxes": {
+						"type": "string",
+						"example": "[{\"id\":1, \"name\":\"name1\", \"rate\":\"rate1\", \"total\":\"total1\"}]"
+					},
+					"status": {
+						"$ref": "#/components/schemas/expenseStatus"
+					},
+					"splitPages": {
+						"type": "boolean",
+						"description": "Create an expense for each page in the uploaded file."
+					},
+					"method": {
+						"$ref": "#/components/schemas/expensePostMethods"
+					},
+					"file": {
+						"type": "string",
+						"format": "binary"
+					}
+				}
+			},
+			"transition": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"order": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string"
+					},
+					"buttonIconName": {
+						"type": "string"
+					},
+					"shouldBypassValidation": {
+						"type": "boolean"
+					},
+					"shouldStampSignature": {
+						"type": "boolean"
+					},
+					"shouldStampDate": {
+						"type": "boolean"
+					}
+				}
+			},
+			"documentAnchorBasket": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"filename": {
+						"type": "string"
+					},
+					"creationDate": {
+						"type": "string"
+					},
+					"editionDate": {
+						"type": "string"
+					},
+					"uniqueKey": {
+						"type": "string"
+					},
+					"plannedDate": {
+						"type": "string",
+						"nullable": true
+					},
+					"version": {
+						"type": "integer",
+						"nullable": true
+					},
+					"message": {
+						"type": "string",
+						"nullable": true
+					},
+					"warnings": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"errors": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"isNew": {
+						"type": "boolean"
+					},
+					"isLock": {
+						"type": "boolean"
+					},
+					"isLockedBy": {
+						"type": "string"
+					},
+					"templateName": {
+						"type": "string",
+						"nullable": true
+					},
+					"templateTypeName": {
+						"type": "string",
+						"nullable": true
+					},
+					"createdBy": {
+						"type": "string"
+					},
+					"editedBy": {
+						"type": "string",
+						"nullable": true
+					},
+					"assignedTo": {
+						"type": "string",
+						"nullable": true
+					},
+					"status": {
+						"type": "string"
+					},
+					"step": {
+						"type": "string"
+					},
+					"source": {
+						"type": "string",
+						"nullable": true
+					},
+					"pageCount": {
+						"type": "integer",
+						"nullable": true
+					},
+					"fields": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "integer"
+								},
+								"name": {
+									"type": "string"
+								},
+								"value": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"hasBeenEdited": {
+				"type": "boolean"
+			},
+			"currentDocument": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"mimeType": {
+						"type": "string"
+					},
+					"snippet": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					},
+					"version": {
+						"type": "integer"
+					},
+					"ocrSource": {
+						"type": "integer"
+					},
+					"createdAt": {
+						"$ref": "#/components/schemas/createdAt"
+					}
+				}
+			},
+			"createdAt": {
+				"type": "object",
+				"properties": {
+					"date": {
+						"type": "string"
+					},
+					"timezone_type": {
+						"type": "integer"
+					},
+					"timezone": {
+						"type": "string"
+					}
+				}
+			},
+			"documentAnchor": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"currentDocument": {
+						"$ref": "#/components/schemas/currentDocument"
+					},
+					"filename": {
+						"type": "string"
+					},
+					"template": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"name": {
+								"type": "string"
+							},
+							"typeId": {
+								"type": "integer"
+							},
+							"typeName": {
+								"type": "string"
+							}
+						},
+						"nullable": true
+					},
+					"uniqueKey": {
+						"type": "string"
+					}
+				}
+			},
+			"documentAnchorShow": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"url": {
+						"type": "string"
+					},
+					"creator": {
+						"type": "object",
+						"$ref": "#/components/schemas/basicUserInfo"
+					},
+					"filename": {
+						"type": "string"
+					},
+					"uniqueKey": {
+						"type": "string"
+					},
+					"creationDate": {
+						"type": "string",
+						"format": "date"
+					},
+					"editionDate": {
+						"type": "string",
+						"format": "date"
+					},
+					"mimeType": {
+						"type": "string"
+					},
+					"step": {
+						"type": "string"
+					},
+					"stepId": {
+						"type": "integer"
+					},
+					"isFinalStep": {
+						"type": "boolean"
+					},
+					"status": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"hasPendingProgram": {
+						"type": "boolean"
+					},
+					"currentDocument": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"version": {
+								"type": "integer"
+							},
+							"isSignaturesAllowed": {
+								"type": "boolean"
+							},
+							"isAnnotationsAllowed": {
+								"type": "boolean"
+							},
+							"viewer": {
+								"type": "integer"
+							},
+							"ocrSource": {
+								"type": "integer"
+							},
+							"fields": {
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/documentField"
+								}
+							}
+						}
+					},
+					"assignedTo": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/basicUserInfo"
+						}
+					},
+					"template": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"name": {
+								"type": "string"
+							},
+							"typeId": {
+								"type": "integer"
+							},
+							"typeName": {
+								"type": "string"
+							},
+							"isFormTemplate": {
+								"type": "boolean"
+							}
+						}
+					},
+					"transitions": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/transition"
+						}
+					}
+				}
+			},
+			"documentState": {
+				"type": "object",
+				"properties": {
+					"status": {
+						"type": "string"
+					},
+					"step": {
+						"type": "string"
+					},
+					"stepId": {
+						"type": "string"
+					},
+					"isFinalStep": {
+						"type": "boolean"
+					},
+					"message": {
+						"type": "string"
+					},
+					"errors": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"warnings": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"assignedTo": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/basicUserInfo"
+						}
+					}
+				}
+			},
+			"userDocumentState": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/documentState"
+					},
+					{
+						"type": "object",
+						"properties": {
+							"isNew": {
+								"type": "boolean"
+							}
+						}
+					}
+				]
+			},
+			"field": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"typeId": {
+						"type": "integer"
+					}
+				}
+			},
+			"templateField": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"defaultValue": {
+						"type": "string"
+					},
+					"globalFieldId": {
+						"type": "integer"
+					},
+					"typeId": {
+						"type": "integer"
+					},
+					"fieldClass": {
+						"type": "integer",
+						"description": "* `0` - AutoDetect\n* `1` - Formula\n* `2` - Metadata\n* `3` - Form Field\n",
+						"enum": [0, 1, 2, 3]
+					},
+					"name": {
+						"type": "string"
+					},
+					"pdfFieldName": {
+						"type": "string"
+					},
+					"formula": {
+						"type": "string"
+					},
+					"isActive": {
+						"type": "boolean"
+					},
+					"isTable": {
+						"type": "boolean"
+					},
+					"isDocumentIdentifier": {
+						"type": "boolean"
+					},
+					"isFieldIdentifier": {
+						"type": "boolean"
+					},
+					"shouldShowOnCreation": {
+						"type": "boolean"
+					},
+					"isExternalData": {
+						"type": "boolean"
+					},
+					"isKeyValue": {
+						"type": "boolean"
+					},
+					"externalData": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"label": {
+									"type": "string"
+								},
+								"value": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"externalColumns": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"label": {
+									"type": "string"
+								},
+								"value": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"documentField": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"value": {
+						"type": "string"
+					},
+					"defaultValue": {
+						"type": "string"
+					},
+					"isList": {
+						"type": "boolean"
+					},
+					"isTable": {
+						"type": "boolean"
+					},
+					"isEditable": {
+						"type": "boolean"
+					},
+					"isVisible": {
+						"type": "boolean"
+					},
+					"isMandatory": {
+						"type": "boolean"
+					},
+					"ocrConf": {
+						"type": "string"
+					},
+					"templateField": {
+						"$ref": "#/components/schemas/templateField"
+					},
+					"isFormField": {
+						"type": "boolean"
+					},
+					"isOcrField": {
+						"type": "boolean"
+					},
+					"isFormulaField": {
+						"type": "boolean"
+					},
+					"hasSecuredFields": {
+						"type": "boolean"
+					}
+				}
+			},
+			"groupedDocument": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"groupId": {
+							"type": "integer"
+						},
+						"groupName": {
+							"type": "string"
+						},
+						"links": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"anchorId": {
+										"type": "integer"
+									},
+									"anchorUniqueKey": {
+										"type": "string"
+									},
+									"template": {
+										"type": "object",
+										"properties": {
+											"name": {
+												"type": "string"
+											},
+											"typeName": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"links": {
+				"type": "object",
+				"properties": {
+					"first": {
+						"type": "string",
+						"description": "Link to the first page of the paginated resource"
+					},
+					"last": {
+						"type": "string",
+						"description": "Link to the last page of the paginated resource"
+					},
+					"prev": {
+						"type": "string",
+						"description": "Link to the previous page of the paginated resource"
+					},
+					"next": {
+						"type": "string",
+						"description": "Link to the next page of the paginated resource"
+					}
+				}
+			},
+			"meta": {
+				"type": "object",
+				"properties": {
+					"current_page": {
+						"type": "integer",
+						"description": "The current page of the paginated resource"
+					},
+					"from": {
+						"type": "integer",
+						"description": "The index of the first resource returned in this request"
+					},
+					"last_page": {
+						"type": "integer",
+						"description": "The last page of the paginated resource"
+					},
+					"path": {
+						"type": "string",
+						"description": "The base URL to access this resource"
+					},
+					"per_page": {
+						"type": "integer",
+						"description": "The quantity to show per page"
+					},
+					"to": {
+						"type": "integer",
+						"description": "The index of the last resource returned in this request"
+					},
+					"total": {
+						"type": "integer",
+						"description": "The total amount of resource that match this request"
+					}
+				}
+			},
+			"pendingTransaction": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"documentAnchorId": {
+						"type": "integer"
+					},
+					"status": {
+						"type": "integer"
+					},
+					"exportProgram": {
+						"type": "string"
+					},
+					"operation": {
+						"type": "integer"
+					},
+					"requestData": {
+						"type": "string"
+					}
+				}
+			},
+			"profile": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"shouldNotifyOnNewAssignment": {
+						"type": "boolean"
+					},
+					"shouldNotifyOnNewVersion": {
+						"type": "boolean"
+					},
+					"shouldNotifyOnDelete": {
+						"type": "boolean"
+					},
+					"language": {
+						"type": "string"
+					},
+					"adminCompanies": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/company"
+						}
+					},
+					"defaultColor": {
+						"type": "string"
+					},
+					"defaultSearchDocumentType": {
+						"type": "integer"
+					},
+					"defaultFilterBy": {
+						"type": "integer"
+					}
+				}
+			},
+			"project": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"isActive": {
+						"type": "boolean"
+					},
+					"isArchive": {
+						"type": "boolean"
+					}
+				}
+			},
+			"basicExpense": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"user": {
+						"$ref": "#/components/schemas/basicUserInfo"
+					},
+					"amount": {
+						"type": "number",
+						"format": "float"
+					},
+					"category": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"name": {
+								"type": "string"
+							}
+						}
+					},
+					"currencyCode": {
+						"type": "string"
+					},
+					"date": {
+						"type": "string",
+						"format": "date"
+					},
+					"created": {
+						"type": "string",
+						"format": "date"
+					},
+					"modified": {
+						"type": "string",
+						"format": "date"
+					},
+					"completed": {
+						"type": "string",
+						"format": "date"
+					},
+					"description": {
+						"type": "string"
+					},
+					"project": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"name": {
+								"type": "string"
+							}
+						}
+					},
+					"taxGroup": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"name": {
+								"type": "string"
+							}
+						}
+					},
+					"taxes": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"id": {
+									"type": "integer"
+								},
+								"name": {
+									"type": "string"
+								},
+								"rate": {
+									"type": "number",
+									"format": "float"
+								}
+							}
+						}
+					},
+					"tipAmount": {
+						"type": "string"
+					}
+				}
+			},
+			"labelValueEntity": {
+				"type": "object",
+				"properties": {
+					"label": {
+						"type": "string"
+					},
+					"value": {
+						"type": "integer"
+					}
+				}
+			},
+			"expense": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"user_id": {
+						"type": "integer"
+					},
+					"category_id": {
+						"type": "integer"
+					},
+					"date": {
+						"type": "string",
+						"format": "date"
+					},
+					"created": {
+						"type": "string",
+						"format": "date"
+					},
+					"modified": {
+						"type": "string",
+						"format": "date"
+					},
+					"completed": {
+						"type": "string",
+						"format": "date"
+					},
+					"description": {
+						"type": "string"
+					},
+					"amount": {
+						"type": "number",
+						"format": "float"
+					},
+					"amountRate": {
+						"type": "number",
+						"format": "float"
+					},
+					"total": {
+						"type": "number",
+						"format": "float"
+					},
+					"taxTotal": {
+						"type": "number",
+						"format": "float"
+					},
+					"attachment": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"name": {
+								"type": "string"
+							}
+						}
+					},
+					"taxGroup": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"name": {
+								"type": "string"
+							}
+						}
+					},
+					"taxgroup_id": {
+						"type": "integer"
+					},
+					"currency_code": {
+						"type": "string"
+					},
+					"currency_id": {
+						"type": "integer"
+					},
+					"tipAmount": {
+						"type": "string"
+					}
+				}
+			},
+			"currency": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"code": {
+						"type": "string"
+					},
+					"status": {
+						"type": "integer"
+					}
+				}
+			},
+			"taxes": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer",
+						"example": 1
+					},
+					"name": {
+						"type": "string",
+						"example": "name 1"
+					},
+					"rate": {
+						"type": "number",
+						"format": "float",
+						"example": 1.0
+					},
+					"total": {
+						"type": "number",
+						"format": "float",
+						"example": 12.89
+					}
+				}
+			},
+			"expenseConfiguration": {
+				"type": "object",
+				"properties": {
+					"referenceDate": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"key": {
+								"type": "string"
+							},
+							"value": {
+								"type": "string"
+							}
+						}
+					},
+					"period": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"key": {
+								"type": "string"
+							},
+							"value": {
+								"type": "string"
+							}
+						}
+					},
+					"template": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"key": {
+								"type": "string"
+							},
+							"value": {
+								"type": "string"
+							}
+						}
+					},
+					"uniqueKey": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"key": {
+								"type": "string"
+							},
+							"value": {
+								"type": "string"
+							}
+						}
+					},
+					"currencyId": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "integer"
+							},
+							"key": {
+								"type": "string"
+							},
+							"value": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			},
+			"expenseCategory": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"type": {
+						"type": "integer"
+					},
+					"unit": {
+						"type": "string"
+					},
+					"rate": {
+						"type": "number",
+						"format": "decimal"
+					},
+					"account": {
+						"type": "string"
+					},
+					"taxReclaimRate": {
+						"type": "number",
+						"format": "decimal"
+					},
+					"isActive": {
+						"type": "boolean"
+					},
+					"isArchive": {
+						"type": "boolean"
+					},
+					"isTaxable": {
+						"type": "boolean"
+					},
+					"taxGroupId": {
+						"type": "integer"
+					},
+					"currencyId": {
+						"type": "integer"
+					}
+				}
+			},
+			"expenseReportStatus": {
+				"type": "object",
+				"properties": {
+					"isEmpty": {
+						"type": "boolean",
+						"example": false
+					},
+					"totalCount": {
+						"type": "integer",
+						"example": 6
+					},
+					"processingCount": {
+						"type": "integer",
+						"example": 0
+					},
+					"pendingCount": {
+						"type": "integer",
+						"example": 1
+					},
+					"completedCount": {
+						"type": "integer",
+						"example": 5
+					},
+					"submittedCount": {
+						"type": "integer",
+						"example": 0
+					},
+					"grandTotalsPerCurrency": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "number",
+							"format": "float"
+						},
+						"example": {
+							"currencyCode-currencyId": 585.4612128000001,
+							"CAD-1": 1043.5724,
+							"GBP-9": 0.0
+						}
+					}
+				}
+			},
+			"basicUserInfo": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					}
+				}
+			},
+			"user": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"isSystemUser": {
+						"type": "boolean"
+					}
+				}
+			},
+			"userWithCompany": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/user"
+					},
+					{
+						"type": "object",
+						"properties": {
+							"isActive": {
+								"type": "boolean"
+							},
+							"role": {
+								"type": "string"
+							}
+						}
+					}
+				]
+			},
+			"tax": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"rate": {
+						"type": "number"
+					},
+					"account": {
+						"type": "string"
+					},
+					"status": {
+						"type": "integer"
+					}
+				}
+			},
+			"taxGroup": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"default_currency_id": {
+						"type": "integer"
+					},
+					"status": {
+						"type": "integer"
+					},
+					"currencyCode": {
+						"type": "string"
+					}
+				}
+			},
+			"taxTaxGroup": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"tax_id": {
+						"type": "integer"
+					},
+					"taxgroup_id": {
+						"type": "integer"
+					}
+				}
+			},
+			"template": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"templateTypeId": {
+						"type": "integer"
+					},
+					"typeName": {
+						"type": "string"
+					},
+					"createdBy": {
+						"type": "integer"
+					},
+					"modifiedBy": {
+						"type": "integer"
+					},
+					"creationDate": {
+						"type": "string",
+						"format": "date"
+					},
+					"modificationDate": {
+						"type": "string",
+						"format": "date"
+					},
+					"language": {
+						"type": "string"
+					},
+					"workflowId": {
+						"type": "integer"
+					},
+					"active": {
+						"type": "boolean"
+					},
+					"isFormTemplate": {
+						"type": "boolean"
+					},
+					"mandatoryUniqueKeyOnInsert": {
+						"type": "boolean"
+					},
+					"formulasCalculationOrder": {
+						"type": "array",
+						"items": {
+							"type": "integer"
+						}
+					}
+				}
+			},
+			"templateWithFields": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/template"
+					},
+					{
+						"type": "object",
+						"properties": {
+							"fields": {
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/templateField"
+								}
+							}
+						}
+					}
+				]
+			},
+			"templateType": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					},
+					"genericType": {
+						"type": "integer"
+					}
+				}
+			},
+			"assignment": {
+				"type": "object",
+				"properties": {
+					"assignationType": {
+						"type": "string",
+						"enum": ["simple", "conditionnal", "predefined"]
+					},
+					"approbationLogic": {
+						"type": "string",
+						"enum": ["AND", "OR"]
+					},
+					"alternativeAssignment": {
+						"type": "integer"
+					},
+					"cases": {
+						"type": "array",
+						"items": {
+							"type": "object"
+						}
+					},
+					"default": {
+						"$ref": "#/components/schemas/assignment"
+					},
+					"predefinedAssignment": {
+						"type": "integer"
+					},
+					"assignments": {
+						"type": "array",
+						"items": {
+							"$ref": "#/components/schemas/assignment"
+						}
+					},
+					"comment": {
+						"type": "string"
+					}
+				}
+			},
+			"imageAnnotationRequest": {
+				"type": "object",
+				"properties": {
+					"useDefaults": {
+						"type": "boolean",
+						"example": false
+					},
+					"creatorName": {
+						"type": "string",
+						"example": "(email) Fullname"
+					},
+					"base64Urls": {
+						"type": "array",
+						"items": {
+							"type": "string",
+							"example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAG1BMVEXMzMwAAACysrJ==="
+						}
+					},
+					"annotations": {
+						"type": "array",
+						"items": {
+							"oneOf": [
+								{
+									"$ref": "#/components/schemas/imageAnnotation"
+								}
+							]
+						}
+					}
+				}
+			},
+			"annotation": {
+				"type": "object",
+				"properties": {
+					"content": {
+						"type": "object",
+						"$ref": "#/components/schemas/annotationContent"
+					}
+				}
+			},
+			"imageAnnotation": {
+				"type": "object",
+				"properties": {
+					"content": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/annotationContent"
+							},
+							{
+								"type": "object",
+								"properties": {
+									"contentType": {
+										"type": "string",
+										"example": "image/png"
+									},
+									"imageAttachmentId": {
+										"type": "string",
+										"example": "ffe23a235e3b733a498376f869292110e6663473712373ea6b4c0b02b469583d"
+									}
+								}
+							}
+						]
+					}
+				}
+			},
+			"annotationContent": {
+				"type": "object",
+				"properties": {
+					"v": {
+						"type": "integer",
+						"example": 1
+					},
+					"pageIndex": {
+						"type": "integer",
+						"example": 0
+					},
+					"opacity": {
+						"type": "number",
+						"example": 1
+					},
+					"creatorName": {
+						"type": "string",
+						"example": "(email) Fullname"
+					},
+					"createdAt": {
+						"type": "string",
+						"example": "2012-04-23T18:25:43.511Z"
+					},
+					"updatedAt": {
+						"type": "string",
+						"example": "2012-04-23T18:25:43.511Z"
+					},
+					"type": {
+						"type": "string",
+						"$ref": "#/components/schemas/annotationType"
+					},
+					"bbox": {
+						"type": "array",
+						"example": ["100,100,100,100"],
+						"minItems": 4,
+						"maxItems": 4
+					}
+				}
+			},
+			"documentAccessObject": {
+				"type": "object",
+				"example": {
+					"allowRead": true,
+					"allowEdit": true,
+					"allowReassign": true,
+					"allowDelete": true,
+					"allowEditPdfAnnotation": true,
+					"allowEditPdfForm": true
+				}
+			},
+			"functionalityAccessObject": {
+				"type": "object",
+				"example": {
+					"basket": true,
+					"noTemplate": true,
+					"search": true,
+					"purchaseOrder": true,
+					"configuration": true,
+					"help": true,
+					"profile": true,
+					"expenseReport": true,
+					"addExpenseReport": true,
+					"editExpenseReportCategory": true,
+					"editExpenseReportProject": true,
+					"myDashboard": true
+				}
+			},
+			"annotationType": {
+				"type": "string",
+				"enum": [
+					"pspdfkit/image",
+					"pspdfkit/image",
+					"pspdfkit/ink",
+					"pspdfkit/link",
+					"pspdfkit/markup/highlight",
+					"pspdfkit/markup/redaction",
+					"pspdfkit/markup/squiggly",
+					"pspdfkit/markup/strikeout",
+					"pspdfkit/markup/underline",
+					"pspdfkit/note",
+					"pspdfkit/comment-marker",
+					"pspdfkit/shape/ellipse",
+					"pspdfkit/shape/line",
+					"pspdfkit/shape/polygon",
+					"pspdfkit/shape/polyline",
+					"pspdfkit/shape/rectangle",
+					"pspdfkit/stamp",
+					"pspdfkit/text"
+				]
+			},
+			"expenseStatus": {
+				"type": "integer",
+				"enum": [0, 1, 2, 3],
+				"description": "Expense status:\n  * 0 - PROCESSING\n  * 1 - PENDING_CONFIRMATION\n  * 2 - COMPLETED\n  * 3 - SUBMITTED\n"
+			},
+			"expenseImageType": {
+				"type": "string",
+				"enum": ["THUMBNAIL", "IMAGE"],
+				"default": "THUMBNAIL"
+			},
+			"externalFileEntity": {
+				"type": "string",
+				"enum": ["DOCUMENT ANCHOR", "EXPENSE"],
+				"default": "DOCUMENT ANCHOR",
+				"description": "Methods:\n  * DOCUMENT ANCHOR\n  * EXPENSE\n"
+			},
+			"externalFileMethod": {
+				"type": "string",
+				"enum": ["DOWNLOAD", "CONTENT"],
+				"default": "DOWNLOAD",
+				"description": "Methods:\n  * DOWNLOAD\n  * CONTENT\n"
+			},
+			"expensePostMethods": {
+				"type": "string",
+				"enum": ["put", "patch", "post"],
+				"description": "Save methods:\n  * Put - Creates and send expenses to AI-Services\n  * Patch - Updates the expense\n  * Post - Creates if required and confirms (completed status) the expense. *No AI-Services\n"
+			}
+		},
+		"securitySchemes": {
+			"OAuth2": {
+				"type": "oauth2",
+				"flows": {
+					"password": {
+						"tokenUrl": "/api/oauth/token"
+					}
+				}
+			}
+		}
+	},
 	"tags": [
 		{
 			"name": "Columns"
@@ -6525,1946 +8465,6 @@
 								}
 							}
 						}
-					}
-				}
-			}
-		}
-	},
-	"components": {
-		"schemas": {
-			"200Response": {
-				"type": "object",
-				"properties": {
-					"message": {
-						"type": "string",
-						"example": "Process has been succesfull"
-					},
-					"details": {
-						"type": "string"
-					}
-				}
-			},
-			"401Response": {
-				"type": "object",
-				"properties": {
-					"message": {
-						"type": "string",
-						"example": "Unauthenticated"
-					}
-				}
-			},
-			"403Response": {
-				"type": "object",
-				"properties": {
-					"message": {
-						"type": "string",
-						"example": "You don't have the rights to access this resource"
-					}
-				}
-			},
-			"404Response": {
-				"type": "object",
-				"properties": {
-					"message": {
-						"type": "string",
-						"example": "Resource not found"
-					},
-					"details": {
-						"type": "string",
-						"example": "The X does not exist"
-					}
-				}
-			},
-			"423Response": {
-				"type": "object",
-				"properties": {
-					"message": {
-						"type": "string",
-						"example": "Resource is locked"
-					},
-					"details": {
-						"type": "string",
-						"example": "The X has some properties unavailble for edition"
-					}
-				}
-			},
-			"aiResult": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"requestId": {
-						"type": "integer"
-					},
-					"created": {
-						"type": "object",
-						"properties": {
-							"date": {
-								"type": "string"
-							},
-							"timezone_type": {
-								"type": "integer"
-							},
-							"timezone": {
-								"type": "string"
-							}
-						}
-					},
-					"filename": {
-						"type": "string"
-					},
-					"requestType": {
-						"type": "string"
-					},
-					"aiModel": {
-						"type": "integer"
-					},
-					"status": {
-						"type": "integer"
-					},
-					"entityId": {
-						"type": "integer"
-					},
-					"requestUUID": {
-						"type": "string"
-					}
-				}
-			},
-			"aiExpenseResult": {
-				"allOf": [
-					{
-						"$ref": "#/components/schemas/aiResult"
-					},
-					{
-						"type": "object",
-						"properties": {
-							"result": {
-								"type": "object",
-								"properties": {
-									"invoice_or_receipt": {
-										"type": "string"
-									},
-									"transaction_type": {
-										"type": "string"
-									},
-									"vendor_merchant_supplier_name": {
-										"type": "string"
-									},
-									"vendor_address": {
-										"type": "string"
-									},
-									"vendor_city": {
-										"type": "string"
-									},
-									"vendor_state_province": {
-										"type": "string"
-									},
-									"vendor_country": {
-										"type": "string"
-									},
-									"transaction_date": {
-										"type": "string"
-									},
-									"transaction_date_ymd": {
-										"type": "string"
-									},
-									"subtotal": {
-										"type": "string"
-									},
-									"tps_gst": {
-										"type": "string"
-									},
-									"tvq_tvp": {
-										"type": "string"
-									},
-									"hst_tvh": {
-										"type": "string"
-									},
-									"amount_gratuity_service_tip_pourboire": {
-										"type": "string"
-									},
-									"total": {
-										"type": "string"
-									},
-									"transaction_currency": {
-										"type": "string"
-									},
-									"cc_number_last4": {
-										"type": "string"
-									},
-									"cc_brand": {
-										"type": "string"
-									},
-									"note": {
-										"type": "string"
-									},
-									"document_title": {
-										"type": "string",
-										"items": {
-											"type": "array",
-											"items": {
-												"$ref": "#/components/schemas/aiExpenseResultItem"
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				]
-			},
-			"aiExpenseResultItem": {
-				"type": "object",
-				"properties": {
-					"item_qty": {
-						"type": "string"
-					},
-					"item_name": {
-						"type": "string"
-					},
-					"item_total": {
-						"type": "string"
-					}
-				}
-			},
-			"globalColumn": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"name": {
-						"type": "string"
-					},
-					"description": {
-						"type": "string"
-					},
-					"typeId": {
-						"type": "integer"
-					}
-				}
-			},
-			"detailsParametersBlockedAutomaticTransition": {
-				"type": "object",
-				"properties": {
-					"step": {
-						"type": "integer"
-					},
-					"workflow": {
-						"type": "string"
-					},
-					"errorMessage": {
-						"type": "string"
-					}
-				}
-			},
-			"detailsParametersAddingDocumentDetails": {
-				"type": "array",
-				"items": {
-					"type": "object",
-					"properties": {
-						"user": {
-							"type": "string"
-						},
-						"reassign": {
-							"type": "string"
-						}
-					}
-				}
-			},
-			"detailsParametersTransitionDetails": {
-				"type": "object",
-				"properties": {
-					"workflow": {
-						"type": "string"
-					},
-					"step": {
-						"type": "string"
-					},
-					"toStep": {
-						"type": "string"
-					},
-					"transition": {
-						"type": "string"
-					},
-					"program": {
-						"type": "string"
-					},
-					"isBypass": {
-						"type": "boolean",
-						"nullable": true
-					}
-				}
-			},
-			"detailsParametersReassignUserToUserDetails": {
-				"type": "object",
-				"properties": {
-					"reassignments": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"user": {
-									"type": "string"
-								},
-								"reassign": {
-									"type": "string"
-								}
-							}
-						}
-					}
-				}
-			},
-			"detailsParametersDelegateDetails": {
-				"type": "object",
-				"properties": {
-					"email": {
-						"type": "string"
-					}
-				}
-			},
-			"detailsParametersDefaultValue": {
-				"type": "array",
-				"items": {
-					"type": "object",
-					"properties": {
-						"name": {
-							"type": "string"
-						},
-						"value": {
-							"type": "string"
-						}
-					}
-				}
-			},
-			"documentStateRequest": {
-				"type": "object",
-				"properties": {
-					"assertViewed": {
-						"type": "boolean",
-						"default": null
-					}
-				}
-			},
-			"comment": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"creator": {
-						"type": "object",
-						"$ref": "#/components/schemas/basicUserInfo"
-					},
-					"createdDate": {
-						"type": "object",
-						"$ref": "#/components/schemas/createdAt"
-					},
-					"editorId": {
-						"type": "integer"
-					},
-					"htmlValue": {
-						"type": "string"
-					},
-					"parentId": {
-						"type": "integer"
-					},
-					"children": {
-						"nullable": true,
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/comment"
-						}
-					}
-				}
-			},
-			"company": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"name": {
-						"type": "string"
-					},
-					"active": {
-						"type": "boolean"
-					},
-					"db_name": {
-						"type": "string"
-					}
-				}
-			},
-			"companies": {
-				"type": "array",
-				"items": {
-					"$ref": "#/components/schemas/company"
-				}
-			},
-			"expenseRequest": {
-				"type": "object",
-				"required": ["categoryId"],
-				"properties": {
-					"categoryId": {
-						"type": "integer"
-					},
-					"userId": {
-						"type": "integer"
-					},
-					"date": {
-						"type": "string",
-						"format": "date"
-					},
-					"amount": {
-						"type": "number",
-						"format": "float"
-					},
-					"tipAmount": {
-						"type": "number",
-						"format": "float"
-					},
-					"description": {
-						"type": "string"
-					},
-					"projectId": {
-						"type": "string"
-					},
-					"attachment": {
-						"type": "integer"
-					},
-					"currencyId": {
-						"type": "integer"
-					},
-					"currencyCode": {
-						"type": "integer"
-					},
-					"taxGroupId": {
-						"type": "integer"
-					},
-					"taxes": {
-						"type": "string",
-						"example": "[{\"id\":1, \"name\":\"name1\", \"rate\":\"rate1\", \"total\":\"total1\"}]"
-					},
-					"status": {
-						"$ref": "#/components/schemas/expenseStatus"
-					},
-					"splitPages": {
-						"type": "boolean",
-						"description": "Create an expense for each page in the uploaded file."
-					},
-					"method": {
-						"$ref": "#/components/schemas/expensePostMethods"
-					},
-					"file": {
-						"type": "string",
-						"format": "binary"
-					}
-				}
-			},
-			"transition": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"order": {
-						"type": "integer"
-					},
-					"name": {
-						"type": "string"
-					},
-					"description": {
-						"type": "string"
-					},
-					"type": {
-						"type": "string"
-					},
-					"buttonIconName": {
-						"type": "string"
-					},
-					"shouldBypassValidation": {
-						"type": "boolean"
-					},
-					"shouldStampSignature": {
-						"type": "boolean"
-					},
-					"shouldStampDate": {
-						"type": "boolean"
-					}
-				}
-			},
-			"documentAnchorBasket": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"filename": {
-						"type": "string"
-					},
-					"creationDate": {
-						"type": "string"
-					},
-					"editionDate": {
-						"type": "string"
-					},
-					"uniqueKey": {
-						"type": "string"
-					},
-					"plannedDate": {
-						"type": "string",
-						"nullable": true
-					},
-					"version": {
-						"type": "integer",
-						"nullable": true
-					},
-					"message": {
-						"type": "string",
-						"nullable": true
-					},
-					"warnings": {
-						"type": "array",
-						"items": {
-							"type": "string"
-						}
-					},
-					"errors": {
-						"type": "array",
-						"items": {
-							"type": "string"
-						}
-					},
-					"isNew": {
-						"type": "boolean"
-					},
-					"isLock": {
-						"type": "boolean"
-					},
-					"isLockedBy": {
-						"type": "string"
-					},
-					"templateName": {
-						"type": "string",
-						"nullable": true
-					},
-					"templateTypeName": {
-						"type": "string",
-						"nullable": true
-					},
-					"createdBy": {
-						"type": "string"
-					},
-					"editedBy": {
-						"type": "string",
-						"nullable": true
-					},
-					"assignedTo": {
-						"type": "string",
-						"nullable": true
-					},
-					"status": {
-						"type": "string"
-					},
-					"step": {
-						"type": "string"
-					},
-					"source": {
-						"type": "string",
-						"nullable": true
-					},
-					"pageCount": {
-						"type": "integer",
-						"nullable": true
-					},
-					"fields": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"id": {
-									"type": "integer"
-								},
-								"name": {
-									"type": "string"
-								},
-								"value": {
-									"type": "string"
-								}
-							}
-						}
-					}
-				}
-			},
-			"hasBeenEdited": {
-				"type": "boolean"
-			},
-			"currentDocument": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"mimeType": {
-						"type": "string"
-					},
-					"snippet": {
-						"type": "string"
-					},
-					"url": {
-						"type": "string"
-					},
-					"version": {
-						"type": "integer"
-					},
-					"ocrSource": {
-						"type": "integer"
-					},
-					"createdAt": {
-						"$ref": "#/components/schemas/createdAt"
-					}
-				}
-			},
-			"createdAt": {
-				"type": "object",
-				"properties": {
-					"date": {
-						"type": "string"
-					},
-					"timezone_type": {
-						"type": "integer"
-					},
-					"timezone": {
-						"type": "string"
-					}
-				}
-			},
-			"documentAnchor": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"currentDocument": {
-						"$ref": "#/components/schemas/currentDocument"
-					},
-					"filename": {
-						"type": "string"
-					},
-					"template": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"name": {
-								"type": "string"
-							},
-							"typeId": {
-								"type": "integer"
-							},
-							"typeName": {
-								"type": "string"
-							}
-						},
-						"nullable": true
-					},
-					"uniqueKey": {
-						"type": "string"
-					}
-				}
-			},
-			"documentAnchorShow": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"url": {
-						"type": "string"
-					},
-					"creator": {
-						"type": "object",
-						"$ref": "#/components/schemas/basicUserInfo"
-					},
-					"filename": {
-						"type": "string"
-					},
-					"uniqueKey": {
-						"type": "string"
-					},
-					"creationDate": {
-						"type": "string",
-						"format": "date"
-					},
-					"editionDate": {
-						"type": "string",
-						"format": "date"
-					},
-					"mimeType": {
-						"type": "string"
-					},
-					"step": {
-						"type": "string"
-					},
-					"stepId": {
-						"type": "integer"
-					},
-					"isFinalStep": {
-						"type": "boolean"
-					},
-					"status": {
-						"type": "string"
-					},
-					"message": {
-						"type": "string"
-					},
-					"hasPendingProgram": {
-						"type": "boolean"
-					},
-					"currentDocument": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"version": {
-								"type": "integer"
-							},
-							"isSignaturesAllowed": {
-								"type": "boolean"
-							},
-							"isAnnotationsAllowed": {
-								"type": "boolean"
-							},
-							"viewer": {
-								"type": "integer"
-							},
-							"ocrSource": {
-								"type": "integer"
-							},
-							"fields": {
-								"type": "array",
-								"items": {
-									"$ref": "#/components/schemas/documentField"
-								}
-							}
-						}
-					},
-					"assignedTo": {
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/basicUserInfo"
-						}
-					},
-					"template": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"name": {
-								"type": "string"
-							},
-							"typeId": {
-								"type": "integer"
-							},
-							"typeName": {
-								"type": "string"
-							},
-							"isFormTemplate": {
-								"type": "boolean"
-							}
-						}
-					},
-					"transitions": {
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/transition"
-						}
-					}
-				}
-			},
-			"documentState": {
-				"type": "object",
-				"properties": {
-					"status": {
-						"type": "string"
-					},
-					"step": {
-						"type": "string"
-					},
-					"stepId": {
-						"type": "string"
-					},
-					"isFinalStep": {
-						"type": "boolean"
-					},
-					"message": {
-						"type": "string"
-					},
-					"errors": {
-						"type": "array",
-						"items": {
-							"type": "string"
-						}
-					},
-					"warnings": {
-						"type": "array",
-						"items": {
-							"type": "string"
-						}
-					},
-					"assignedTo": {
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/basicUserInfo"
-						}
-					}
-				}
-			},
-			"userDocumentState": {
-				"allOf": [
-					{
-						"$ref": "#/components/schemas/documentState"
-					},
-					{
-						"type": "object",
-						"properties": {
-							"isNew": {
-								"type": "boolean"
-							}
-						}
-					}
-				]
-			},
-			"field": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"name": {
-						"type": "string"
-					},
-					"description": {
-						"type": "string"
-					},
-					"typeId": {
-						"type": "integer"
-					}
-				}
-			},
-			"templateField": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"defaultValue": {
-						"type": "string"
-					},
-					"globalFieldId": {
-						"type": "integer"
-					},
-					"typeId": {
-						"type": "integer"
-					},
-					"fieldClass": {
-						"type": "integer",
-						"description": "* `0` - AutoDetect\n* `1` - Formula\n* `2` - Metadata\n* `3` - Form Field\n",
-						"enum": [0, 1, 2, 3]
-					},
-					"name": {
-						"type": "string"
-					},
-					"pdfFieldName": {
-						"type": "string"
-					},
-					"formula": {
-						"type": "string"
-					},
-					"isActive": {
-						"type": "boolean"
-					},
-					"isTable": {
-						"type": "boolean"
-					},
-					"isDocumentIdentifier": {
-						"type": "boolean"
-					},
-					"isFieldIdentifier": {
-						"type": "boolean"
-					},
-					"shouldShowOnCreation": {
-						"type": "boolean"
-					},
-					"isExternalData": {
-						"type": "boolean"
-					},
-					"isKeyValue": {
-						"type": "boolean"
-					},
-					"externalData": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"label": {
-									"type": "string"
-								},
-								"value": {
-									"type": "string"
-								}
-							}
-						}
-					},
-					"externalColumns": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"label": {
-									"type": "string"
-								},
-								"value": {
-									"type": "string"
-								}
-							}
-						}
-					}
-				}
-			},
-			"documentField": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"value": {
-						"type": "string"
-					},
-					"defaultValue": {
-						"type": "string"
-					},
-					"isList": {
-						"type": "boolean"
-					},
-					"isTable": {
-						"type": "boolean"
-					},
-					"isEditable": {
-						"type": "boolean"
-					},
-					"isVisible": {
-						"type": "boolean"
-					},
-					"isMandatory": {
-						"type": "boolean"
-					},
-					"ocrConf": {
-						"type": "string"
-					},
-					"templateField": {
-						"$ref": "#/components/schemas/templateField"
-					},
-					"isFormField": {
-						"type": "boolean"
-					},
-					"isOcrField": {
-						"type": "boolean"
-					},
-					"isFormulaField": {
-						"type": "boolean"
-					},
-					"hasSecuredFields": {
-						"type": "boolean"
-					}
-				}
-			},
-			"groupedDocument": {
-				"type": "array",
-				"items": {
-					"type": "object",
-					"properties": {
-						"groupId": {
-							"type": "integer"
-						},
-						"groupName": {
-							"type": "string"
-						},
-						"links": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"properties": {
-									"anchorId": {
-										"type": "integer"
-									},
-									"anchorUniqueKey": {
-										"type": "string"
-									},
-									"template": {
-										"type": "object",
-										"properties": {
-											"name": {
-												"type": "string"
-											},
-											"typeName": {
-												"type": "string"
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			},
-			"links": {
-				"type": "object",
-				"properties": {
-					"first": {
-						"type": "string",
-						"description": "Link to the first page of the paginated resource"
-					},
-					"last": {
-						"type": "string",
-						"description": "Link to the last page of the paginated resource"
-					},
-					"prev": {
-						"type": "string",
-						"description": "Link to the previous page of the paginated resource"
-					},
-					"next": {
-						"type": "string",
-						"description": "Link to the next page of the paginated resource"
-					}
-				}
-			},
-			"meta": {
-				"type": "object",
-				"properties": {
-					"current_page": {
-						"type": "integer",
-						"description": "The current page of the paginated resource"
-					},
-					"from": {
-						"type": "integer",
-						"description": "The index of the first resource returned in this request"
-					},
-					"last_page": {
-						"type": "integer",
-						"description": "The last page of the paginated resource"
-					},
-					"path": {
-						"type": "string",
-						"description": "The base URL to access this resource"
-					},
-					"per_page": {
-						"type": "integer",
-						"description": "The quantity to show per page"
-					},
-					"to": {
-						"type": "integer",
-						"description": "The index of the last resource returned in this request"
-					},
-					"total": {
-						"type": "integer",
-						"description": "The total amount of resource that match this request"
-					}
-				}
-			},
-			"pendingTransaction": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"documentAnchorId": {
-						"type": "integer"
-					},
-					"status": {
-						"type": "integer"
-					},
-					"exportProgram": {
-						"type": "string"
-					},
-					"operation": {
-						"type": "integer"
-					},
-					"requestData": {
-						"type": "string"
-					}
-				}
-			},
-			"profile": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"firstName": {
-						"type": "string"
-					},
-					"lastName": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"shouldNotifyOnNewAssignment": {
-						"type": "boolean"
-					},
-					"shouldNotifyOnNewVersion": {
-						"type": "boolean"
-					},
-					"shouldNotifyOnDelete": {
-						"type": "boolean"
-					},
-					"language": {
-						"type": "string"
-					},
-					"adminCompanies": {
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/company"
-						}
-					},
-					"defaultColor": {
-						"type": "string"
-					},
-					"defaultSearchDocumentType": {
-						"type": "integer"
-					},
-					"defaultFilterBy": {
-						"type": "integer"
-					}
-				}
-			},
-			"project": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"name": {
-						"type": "string"
-					},
-					"isActive": {
-						"type": "boolean"
-					},
-					"isArchive": {
-						"type": "boolean"
-					}
-				}
-			},
-			"basicExpense": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"user": {
-						"$ref": "#/components/schemas/basicUserInfo"
-					},
-					"amount": {
-						"type": "number",
-						"format": "float"
-					},
-					"category": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"name": {
-								"type": "string"
-							}
-						}
-					},
-					"currencyCode": {
-						"type": "string"
-					},
-					"date": {
-						"type": "string",
-						"format": "date"
-					},
-					"created": {
-						"type": "string",
-						"format": "date"
-					},
-					"modified": {
-						"type": "string",
-						"format": "date"
-					},
-					"completed": {
-						"type": "string",
-						"format": "date"
-					},
-					"description": {
-						"type": "string"
-					},
-					"project": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"name": {
-								"type": "string"
-							}
-						}
-					},
-					"taxGroup": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"name": {
-								"type": "string"
-							}
-						}
-					},
-					"taxes": {
-						"type": "array",
-						"items": {
-							"type": "object",
-							"properties": {
-								"id": {
-									"type": "integer"
-								},
-								"name": {
-									"type": "string"
-								},
-								"rate": {
-									"type": "number",
-									"format": "float"
-								}
-							}
-						}
-					},
-					"tipAmount": {
-						"type": "string"
-					}
-				}
-			},
-			"labelValueEntity": {
-				"type": "object",
-				"properties": {
-					"label": {
-						"type": "string"
-					},
-					"value": {
-						"type": "integer"
-					}
-				}
-			},
-			"expense": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"user_id": {
-						"type": "integer"
-					},
-					"category_id": {
-						"type": "integer"
-					},
-					"date": {
-						"type": "string",
-						"format": "date"
-					},
-					"created": {
-						"type": "string",
-						"format": "date"
-					},
-					"modified": {
-						"type": "string",
-						"format": "date"
-					},
-					"completed": {
-						"type": "string",
-						"format": "date"
-					},
-					"description": {
-						"type": "string"
-					},
-					"amount": {
-						"type": "number",
-						"format": "float"
-					},
-					"amountRate": {
-						"type": "number",
-						"format": "float"
-					},
-					"total": {
-						"type": "number",
-						"format": "float"
-					},
-					"taxTotal": {
-						"type": "number",
-						"format": "float"
-					},
-					"attachment": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"name": {
-								"type": "string"
-							}
-						}
-					},
-					"taxGroup": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"name": {
-								"type": "string"
-							}
-						}
-					},
-					"taxgroup_id": {
-						"type": "integer"
-					},
-					"currency_code": {
-						"type": "string"
-					},
-					"currency_id": {
-						"type": "integer"
-					},
-					"tipAmount": {
-						"type": "string"
-					}
-				}
-			},
-			"currency": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"code": {
-						"type": "string"
-					},
-					"status": {
-						"type": "integer"
-					}
-				}
-			},
-			"taxes": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer",
-						"example": 1
-					},
-					"name": {
-						"type": "string",
-						"example": "name 1"
-					},
-					"rate": {
-						"type": "number",
-						"format": "float",
-						"example": 1.0
-					},
-					"total": {
-						"type": "number",
-						"format": "float",
-						"example": 12.89
-					}
-				}
-			},
-			"expenseConfiguration": {
-				"type": "object",
-				"properties": {
-					"referenceDate": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"key": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"period": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"key": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"template": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"key": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"uniqueKey": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"key": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					},
-					"currencyId": {
-						"type": "object",
-						"properties": {
-							"id": {
-								"type": "integer"
-							},
-							"key": {
-								"type": "string"
-							},
-							"value": {
-								"type": "string"
-							}
-						}
-					}
-				}
-			},
-			"expenseCategory": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"name": {
-						"type": "string"
-					},
-					"type": {
-						"type": "integer"
-					},
-					"unit": {
-						"type": "string"
-					},
-					"rate": {
-						"type": "number",
-						"format": "decimal"
-					},
-					"account": {
-						"type": "string"
-					},
-					"taxReclaimRate": {
-						"type": "number",
-						"format": "decimal"
-					},
-					"isActive": {
-						"type": "boolean"
-					},
-					"isArchive": {
-						"type": "boolean"
-					},
-					"isTaxable": {
-						"type": "boolean"
-					},
-					"taxGroupId": {
-						"type": "integer"
-					},
-					"currencyId": {
-						"type": "integer"
-					}
-				}
-			},
-			"expenseReportStatus": {
-				"type": "object",
-				"properties": {
-					"isEmpty": {
-						"type": "boolean",
-						"example": false
-					},
-					"totalCount": {
-						"type": "integer",
-						"example": 6
-					},
-					"processingCount": {
-						"type": "integer",
-						"example": 0
-					},
-					"pendingCount": {
-						"type": "integer",
-						"example": 1
-					},
-					"completedCount": {
-						"type": "integer",
-						"example": 5
-					},
-					"submittedCount": {
-						"type": "integer",
-						"example": 0
-					},
-					"grandTotalsPerCurrency": {
-						"type": "object",
-						"additionalProperties": {
-							"type": "number",
-							"format": "float"
-						},
-						"example": {
-							"currencyCode-currencyId": 585.4612128000001,
-							"CAD-1": 1043.5724,
-							"GBP-9": 0.0
-						}
-					}
-				}
-			},
-			"basicUserInfo": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"firstName": {
-						"type": "string"
-					},
-					"lastName": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					}
-				}
-			},
-			"user": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"firstName": {
-						"type": "string"
-					},
-					"lastName": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"isSystemUser": {
-						"type": "boolean"
-					}
-				}
-			},
-			"userWithCompany": {
-				"allOf": [
-					{
-						"$ref": "#/components/schemas/user"
-					},
-					{
-						"type": "object",
-						"properties": {
-							"isActive": {
-								"type": "boolean"
-							},
-							"role": {
-								"type": "string"
-							}
-						}
-					}
-				]
-			},
-			"tax": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"name": {
-						"type": "string"
-					},
-					"rate": {
-						"type": "number"
-					},
-					"account": {
-						"type": "string"
-					},
-					"status": {
-						"type": "integer"
-					}
-				}
-			},
-			"taxGroup": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"name": {
-						"type": "string"
-					},
-					"default_currency_id": {
-						"type": "integer"
-					},
-					"status": {
-						"type": "integer"
-					},
-					"currencyCode": {
-						"type": "string"
-					}
-				}
-			},
-			"taxTaxGroup": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"tax_id": {
-						"type": "integer"
-					},
-					"taxgroup_id": {
-						"type": "integer"
-					}
-				}
-			},
-			"template": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"name": {
-						"type": "string"
-					},
-					"description": {
-						"type": "string"
-					},
-					"templateTypeId": {
-						"type": "integer"
-					},
-					"typeName": {
-						"type": "string"
-					},
-					"createdBy": {
-						"type": "integer"
-					},
-					"modifiedBy": {
-						"type": "integer"
-					},
-					"creationDate": {
-						"type": "string",
-						"format": "date"
-					},
-					"modificationDate": {
-						"type": "string",
-						"format": "date"
-					},
-					"language": {
-						"type": "string"
-					},
-					"workflowId": {
-						"type": "integer"
-					},
-					"active": {
-						"type": "boolean"
-					},
-					"isFormTemplate": {
-						"type": "boolean"
-					},
-					"mandatoryUniqueKeyOnInsert": {
-						"type": "boolean"
-					},
-					"formulasCalculationOrder": {
-						"type": "array",
-						"items": {
-							"type": "integer"
-						}
-					}
-				}
-			},
-			"templateWithFields": {
-				"allOf": [
-					{
-						"$ref": "#/components/schemas/template"
-					},
-					{
-						"type": "object",
-						"properties": {
-							"fields": {
-								"type": "array",
-								"items": {
-									"$ref": "#/components/schemas/templateField"
-								}
-							}
-						}
-					}
-				]
-			},
-			"templateType": {
-				"type": "object",
-				"properties": {
-					"id": {
-						"type": "integer"
-					},
-					"name": {
-						"type": "string"
-					},
-					"description": {
-						"type": "string"
-					},
-					"genericType": {
-						"type": "integer"
-					}
-				}
-			},
-			"assignment": {
-				"type": "object",
-				"properties": {
-					"assignationType": {
-						"type": "string",
-						"enum": ["simple", "conditionnal", "predefined"]
-					},
-					"approbationLogic": {
-						"type": "string",
-						"enum": ["AND", "OR"]
-					},
-					"alternativeAssignment": {
-						"type": "integer"
-					},
-					"cases": {
-						"type": "array",
-						"items": {
-							"type": "object"
-						}
-					},
-					"default": {
-						"$ref": "#/components/schemas/assignment"
-					},
-					"predefinedAssignment": {
-						"type": "integer"
-					},
-					"assignments": {
-						"type": "array",
-						"items": {
-							"$ref": "#/components/schemas/assignment"
-						}
-					},
-					"comment": {
-						"type": "string"
-					}
-				}
-			},
-			"imageAnnotationRequest": {
-				"type": "object",
-				"properties": {
-					"useDefaults": {
-						"type": "boolean",
-						"example": false
-					},
-					"creatorName": {
-						"type": "string",
-						"example": "(email) Fullname"
-					},
-					"base64Urls": {
-						"type": "array",
-						"items": {
-							"type": "string",
-							"example": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAG1BMVEXMzMwAAACysrJ==="
-						}
-					},
-					"annotations": {
-						"type": "array",
-						"items": {
-							"oneOf": [
-								{
-									"$ref": "#/components/schemas/imageAnnotation"
-								}
-							]
-						}
-					}
-				}
-			},
-			"annotation": {
-				"type": "object",
-				"properties": {
-					"content": {
-						"type": "object",
-						"$ref": "#/components/schemas/annotationContent"
-					}
-				}
-			},
-			"imageAnnotation": {
-				"type": "object",
-				"properties": {
-					"content": {
-						"allOf": [
-							{
-								"$ref": "#/components/schemas/annotationContent"
-							},
-							{
-								"type": "object",
-								"properties": {
-									"contentType": {
-										"type": "string",
-										"example": "image/png"
-									},
-									"imageAttachmentId": {
-										"type": "string",
-										"example": "ffe23a235e3b733a498376f869292110e6663473712373ea6b4c0b02b469583d"
-									}
-								}
-							}
-						]
-					}
-				}
-			},
-			"annotationContent": {
-				"type": "object",
-				"properties": {
-					"v": {
-						"type": "integer",
-						"example": 1
-					},
-					"pageIndex": {
-						"type": "integer",
-						"example": 0
-					},
-					"opacity": {
-						"type": "number",
-						"example": 1
-					},
-					"creatorName": {
-						"type": "string",
-						"example": "(email) Fullname"
-					},
-					"createdAt": {
-						"type": "string",
-						"example": "2012-04-23T18:25:43.511Z"
-					},
-					"updatedAt": {
-						"type": "string",
-						"example": "2012-04-23T18:25:43.511Z"
-					},
-					"type": {
-						"type": "string",
-						"$ref": "#/components/schemas/annotationType"
-					},
-					"bbox": {
-						"type": "array",
-						"example": ["100,100,100,100"],
-						"minItems": 4,
-						"maxItems": 4
-					}
-				}
-			},
-			"documentAccessObject": {
-				"type": "object",
-				"example": {
-					"allowRead": true,
-					"allowEdit": true,
-					"allowReassign": true,
-					"allowDelete": true,
-					"allowEditPdfAnnotation": true,
-					"allowEditPdfForm": true
-				}
-			},
-			"functionalityAccessObject": {
-				"type": "object",
-				"example": {
-					"basket": true,
-					"noTemplate": true,
-					"search": true,
-					"purchaseOrder": true,
-					"configuration": true,
-					"help": true,
-					"profile": true,
-					"expenseReport": true,
-					"addExpenseReport": true,
-					"editExpenseReportCategory": true,
-					"editExpenseReportProject": true,
-					"myDashboard": true
-				}
-			},
-			"annotationType": {
-				"type": "string",
-				"enum": [
-					"pspdfkit/image",
-					"pspdfkit/image",
-					"pspdfkit/ink",
-					"pspdfkit/link",
-					"pspdfkit/markup/highlight",
-					"pspdfkit/markup/redaction",
-					"pspdfkit/markup/squiggly",
-					"pspdfkit/markup/strikeout",
-					"pspdfkit/markup/underline",
-					"pspdfkit/note",
-					"pspdfkit/comment-marker",
-					"pspdfkit/shape/ellipse",
-					"pspdfkit/shape/line",
-					"pspdfkit/shape/polygon",
-					"pspdfkit/shape/polyline",
-					"pspdfkit/shape/rectangle",
-					"pspdfkit/stamp",
-					"pspdfkit/text"
-				]
-			},
-			"expenseStatus": {
-				"type": "integer",
-				"enum": [0, 1, 2, 3],
-				"description": "Expense status:\n  * 0 - PROCESSING\n  * 1 - PENDING_CONFIRMATION\n  * 2 - COMPLETED\n  * 3 - SUBMITTED\n"
-			},
-			"expenseImageType": {
-				"type": "string",
-				"enum": ["THUMBNAIL", "IMAGE"],
-				"default": "THUMBNAIL"
-			},
-			"externalFileEntity": {
-				"type": "string",
-				"enum": ["DOCUMENT ANCHOR", "EXPENSE"],
-				"default": "DOCUMENT ANCHOR",
-				"description": "Methods:\n  * DOCUMENT ANCHOR\n  * EXPENSE\n"
-			},
-			"externalFileMethod": {
-				"type": "string",
-				"enum": ["DOWNLOAD", "CONTENT"],
-				"default": "DOWNLOAD",
-				"description": "Methods:\n  * DOWNLOAD\n  * CONTENT\n"
-			},
-			"expensePostMethods": {
-				"type": "string",
-				"enum": ["put", "patch", "post"],
-				"description": "Save methods:\n  * Put - Creates and send expenses to AI-Services\n  * Patch - Updates the expense\n  * Post - Creates if required and confirms (completed status) the expense. *No AI-Services\n"
-			}
-		},
-		"securitySchemes": {
-			"OAuth2": {
-				"type": "oauth2",
-				"flows": {
-					"password": {
-						"tokenUrl": "/api/oauth/token"
 					}
 				}
 			}
