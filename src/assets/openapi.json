@@ -231,17 +231,17 @@
 					{
 						"in": "query",
 						"name": "status",
-						"default": 0,
 						"schema": {
-							"type": "integer"
+							"type": "integer",
+							"default": 0
 						}
 					},
 					{
 						"in": "query",
 						"name": "feedEntity",
-						"default": true,
 						"schema": {
-							"type": "boolean"
+							"type": "boolean",
+							"default": true
 						}
 					}
 				],
@@ -307,7 +307,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"required": false
+						"required": true
 					},
 					{
 						"in": "query",
@@ -315,8 +315,7 @@
 						"schema": {
 							"type": "integer",
 							"default": 1
-						},
-						"required": false
+						}
 					},
 					{
 						"in": "query",
@@ -698,9 +697,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"data": {
-										"$ref": "#/components/schemas/hasBeenEdited"
-									}
+									"$ref": "#/components/schemas/hasBeenEdited"
 								}
 							}
 						}
@@ -849,8 +846,7 @@
 								"type": "object",
 								"properties": {
 									"fileName": {
-										"type": "string",
-										"required": false
+										"type": "string"
 									},
 									"templateFields": {
 										"type": "object",
@@ -859,25 +855,22 @@
 												"id": 114,
 												"value": "My Value"
 											}
-										],
-										"required": false
+										]
 									},
 									"documentBlob": {
 										"type": "string",
 										"format": "binary",
-										"description": "To create a new version of the document",
-										"required": false
+										"description": "To create a new version of the document"
 									},
 									"includeFieldsExternalData": {
 										"type": "boolean",
-										"default": "true",
-										"required": false
+										"default": "true"
 									},
 									"documentChanges": {
 										"type": "object",
 										"format": "json",
 										"description": "Document changes json",
-										"exemple": {
+										"example": {
 											"hasNewFileName": false,
 											"hasFileDataChanged": false,
 											"hasFieldChanged": true,
@@ -886,13 +879,11 @@
 											"shouldPushFileData": false,
 											"hasChanges": true,
 											"resetChanges": false
-										},
-										"required": false
+										}
 									},
 									"overridePendingProgramExecution": {
 										"type": "boolean",
-										"default": "true",
-										"required": false
+										"default": "true"
 									}
 								}
 							}
@@ -2750,8 +2741,10 @@
 					{
 						"in": "query",
 						"name": "orderByDate",
-						"default": "DESC",
-						"schema": null
+						"schema": {
+							"type": "string",
+							"default": "DESC"
+						}
 					},
 					{
 						"in": "query",
@@ -2790,17 +2783,17 @@
 					{
 						"in": "query",
 						"name": "page",
-						"default": 1,
 						"schema": {
-							"type": "integer"
+							"type": "integer",
+							"default": 1
 						}
 					},
 					{
 						"in": "query",
 						"name": "per_page",
-						"default": 15,
 						"schema": {
-							"type": "integer"
+							"type": "integer",
+							"default": 15
 						}
 					}
 				],
@@ -2925,8 +2918,9 @@
 						"description": "The company(X) or the expense(X) does not exist",
 						"content": {
 							"application/json": {
-								"schema": null,
-								"$ref": "#/components/schemas/404Response"
+								"schema": {
+									"$ref": "#/components/schemas/404Response"
+								}
 							}
 						}
 					},
@@ -2944,6 +2938,7 @@
 					{
 						"in": "path",
 						"name": "companyId",
+						"required": true,
 						"schema": {
 							"type": "integer"
 						}
@@ -3248,19 +3243,21 @@
 			"post": {
 				"tags": ["Expenses"],
 				"summary": "Creations, editions and confirmations of expenses",
-				"consumes": ["multipart/form-data"],
 				"parameters": [
 					{
 						"name": "companyId",
 						"in": "path",
-						"type": "integer",
-						"required": true
+						"required": true,
+						"schema": {
+							"type": "integer"
+						}
 					},
 					{
 						"name": "id",
 						"in": "path",
-						"type": "integer",
-						"required": false
+						"schema": {
+							"type": "integer"
+						}
 					}
 				],
 				"requestBody": {
@@ -3496,17 +3493,17 @@
 						"in": "query",
 						"name": "isActive",
 						"schema": {
-							"type": "boolean"
-						},
-						"default": true
+							"type": "boolean",
+							"default": true
+						}
 					},
 					{
 						"in": "query",
 						"name": "feedEntity",
 						"schema": {
-							"type": "boolean"
-						},
-						"default": true
+							"type": "boolean",
+							"default": true
+						}
 					}
 				],
 				"responses": {
@@ -3639,17 +3636,17 @@
 						"in": "query",
 						"name": "isActive",
 						"schema": {
-							"type": "boolean"
-						},
-						"default": true
+							"type": "boolean",
+							"default": true
+						}
 					},
 					{
 						"in": "query",
 						"name": "feedEntity",
 						"schema": {
-							"type": "boolean"
-						},
-						"default": true
+							"type": "boolean",
+							"default": true
+						}
 					}
 				],
 				"responses": {
@@ -3791,8 +3788,9 @@
 						"description": "The company(X) or the expense(X) does not exist",
 						"content": {
 							"application/json": {
-								"schema": null,
-								"$ref": "#/components/schemas/404Response"
+								"schema": {
+									"$ref": "#/components/schemas/404Response"
+								}
 							}
 						}
 					},
@@ -3877,8 +3875,9 @@
 						"description": "The company(X) or the user(X) does not exist",
 						"content": {
 							"application/json": {
-								"schema": null,
-								"$ref": "#/components/schemas/404Response"
+								"schema": {
+									"$ref": "#/components/schemas/404Response"
+								}
 							}
 						}
 					},
@@ -3889,8 +3888,9 @@
 						"description": "The request is valid but resource is locked",
 						"content": {
 							"application/json": {
-								"schema": null,
-								"$ref": "#/components/schemas/423Response"
+								"schema": {
+									"$ref": "#/components/schemas/423Response"
+								}
 							}
 						}
 					}
@@ -3993,8 +3993,9 @@
 						"description": "The company(X) or the expense(X) does not exist",
 						"content": {
 							"application/json": {
-								"schema": null,
-								"$ref": "#/components/schemas/404Response"
+								"schema": {
+									"$ref": "#/components/schemas/404Response"
+								}
 							}
 						}
 					},
@@ -4005,8 +4006,9 @@
 						"description": "The request is valid but resource is locked",
 						"content": {
 							"application/json": {
-								"schema": null,
-								"$ref": "#/components/schemas/423Response"
+								"schema": {
+									"$ref": "#/components/schemas/423Response"
+								}
 							}
 						}
 					}
@@ -4454,17 +4456,17 @@
 					{
 						"in": "query",
 						"name": "feedEntity",
-						"default": true,
 						"schema": {
-							"type": "boolean"
+							"type": "boolean",
+							"default": true
 						}
 					},
 					{
 						"in": "query",
 						"name": "status",
-						"default": 0,
 						"schema": {
-							"type": "integer"
+							"type": "integer",
+							"default": 0
 						}
 					}
 				],
@@ -4526,17 +4528,17 @@
 					{
 						"in": "query",
 						"name": "status",
-						"default": 0,
 						"schema": {
-							"type": "integer"
+							"type": "integer",
+							"default": 0
 						}
 					},
 					{
 						"in": "query",
 						"name": "feedEntity",
-						"default": true,
 						"schema": {
-							"type": "boolean"
+							"type": "boolean",
+							"default": true
 						}
 					}
 				],
@@ -4673,9 +4675,9 @@
 					{
 						"in": "path",
 						"name": "companyId",
+						"required": true,
 						"schema": {
-							"type": "integer",
-							"required": true
+							"type": "integer"
 						}
 					}
 				],
@@ -5286,7 +5288,7 @@
 										]
 									},
 									"file": {
-										"type": "file",
+										"type": "string",
 										"format": "binary",
 										"description": "The file to send to Viridem"
 									}
@@ -5868,25 +5870,25 @@
 					{
 						"in": "query",
 						"name": "isActive",
-						"default": 1,
 						"schema": {
-							"type": "integer"
+							"type": "integer",
+							"default": 1
 						}
 					},
 					{
 						"in": "query",
 						"name": "feedEntity",
-						"default": true,
 						"schema": {
-							"type": "boolean"
+							"type": "boolean",
+							"default": true
 						}
 					},
 					{
 						"in": "query",
 						"name": "roles[]",
-						"default": ["user", "admin"],
 						"schema": {
 							"type": "array",
+							"default": ["user", "admin"],
 							"items": {
 								"type": "string",
 								"example": [
@@ -6823,10 +6825,10 @@
 			},
 			"expenseRequest": {
 				"type": "object",
+				"required": ["categoryId"],
 				"properties": {
 					"categoryId": {
-						"type": "integer",
-						"required": true
+						"type": "integer"
 					},
 					"userId": {
 						"type": "integer"
@@ -6876,7 +6878,8 @@
 						"$ref": "#/components/schemas/expensePostMethods"
 					},
 					"file": {
-						"type": "file"
+						"type": "string",
+						"format": "binary"
 					}
 				}
 			},
@@ -7016,7 +7019,7 @@
 				}
 			},
 			"hasBeenEdited": {
-				"type": "bool"
+				"type": "boolean"
 			},
 			"currentDocument": {
 				"type": "object",
@@ -8270,7 +8273,7 @@
 						"example": 0
 					},
 					"opacity": {
-						"type": "float",
+						"type": "number",
 						"example": 1
 					},
 					"creatorName": {
