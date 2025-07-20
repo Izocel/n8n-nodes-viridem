@@ -1,0 +1,47 @@
+{
+    "editor.tabSize": 2,
+    "diffviewer.colorScheme": "light",
+    "diffviewer.drawFileList": true,
+    "diffviewer.outputFormat": "side-by-side",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.rulers": [
+        120
+    ],
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always"
+    },
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "[javascript]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[yaml]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[dotenv]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[ignore]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "cSpell.enabled": true,
+    "cSpell.language": "en,fr",
+    "cSpell.words": [
+        "viridem",
+        "Viridem"
+    ],
+}

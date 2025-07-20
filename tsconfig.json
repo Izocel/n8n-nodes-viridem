@@ -26,9 +26,10 @@
 		"outDir": "./dist/",
 	},
 	"include": [
-		"credentials/**/*",
-		"nodes/**/*",
-		"nodes/**/*.json",
-		"package.json",
+		"src/**/*",
 	],
+	"exclude": [
+		"node_modules",
+		"dist"
+	]
 }
