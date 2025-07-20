@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-viridem",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"description": "Viridem n8n nodes",
 	"license": "MIT",
 	"homepage": "https://github.com/Izocel/n8n-nodes-viridem",
