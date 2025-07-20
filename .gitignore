@@ -1,7 +1,8 @@
 dist
 node_modules
 
-.qodo
 *.tsbuildinfo
 *.env
 *.log
+
+.qodo

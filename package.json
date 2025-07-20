@@ -28,12 +28,11 @@
 		]
 	},
 	"scripts": {
-		"dev": "tsc --watch",
 		"prebuild": "chmod +x scripts/*",
 		"build": "bash scripts/build.sh",
-		"local-start": "bash scripts/local-start.sh",
-		"local-deploy": "bash scripts/local-deploy.sh",
-		"postinstall": "patch-package || npm outdated > outdated.md || echo ok"
+		"deploy": "bash scripts/deploy.sh",
+		"start": "bash scripts/start.sh",
+		"postinstall": "patch-package && npm outdated > outdated.md || echo ok"
 	},
 	"devDependencies": {
 		"n8n": "latest",

@@ -1,0 +1,3 @@
+apis:
+  src/assets/openapi.json:
+    alias: viridem-rest-api

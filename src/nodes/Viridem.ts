@@ -1,5 +1,5 @@
 import { N8NPropertiesBuilder, N8NPropertiesBuilderConfig } from '@devlikeapro/n8n-openapi-node';
-import { INodeProperties, INodeType, INodeTypeDescription } from 'n8n-workflow';
+import { INodeType, INodeTypeDescription } from 'n8n-workflow';
 import * as doc from '../assets/openapi.json';
 
 const config: N8NPropertiesBuilderConfig = {};
@@ -41,36 +41,19 @@ export class Viridem implements INodeType {
 	};
 
 	constructor() {
-		properties.forEach((prop: INodeProperties) => {
-			this.addAuthenticationToProperties(prop);
-		});
+		this.addAuthentication();
 	}
 
-	private addAuthenticationToProperties(prop: INodeProperties): void {
-		// Check if the property is for operations
-		if (!prop.options || prop.name !== 'operation') {
-			return;
+	private addAuthentication(): void {
+		// Find the operation property and add authentication to each operation
+		const operationProp = this.description.properties.find((prop) => prop.name === 'operation');
+		if (operationProp && operationProp.options) {
+			operationProp.options.forEach((option: any) => {
+				if (option.routing?.request) {
+					// Set preAuthentication for OAuth2
+					option.routing.request.authentication = 'preAuthentication';
+				}
+			});
 		}
-
-		// Add authentication to each operation option
-		prop.options.forEach((option: any) => {
-			// Skip if no routing defined
-			if (!option.routing) {
-				return option;
-			}
-
-			// Ensure request object exists
-			if (!option.routing.request) {
-				option.routing.request = {};
-			}
-
-			// Also ensure we don't override any existing auth headers
-			if (!option.routing.request.headers) {
-				option.routing.request.headers = {};
-			}
-
-			// Set preAuthentication
-			option.routing.request.authentication = 'preAuthentication';
-		});
 	}
 }
