@@ -17,8 +17,7 @@ const overrides: Override[] = [
 		replace: {
 			type: 'string',
 			displayName: 'Status In',
-			description:
-				'Comma-separated list of status IDs to filter by (e.g., "1,2,3"). Leave empty to include all statuses.',
+			description: 'Comma-separated list of status IDs to filter by (e.g., "1,2,3").',
 			default: '1,2,3',
 			routing: {
 				send: {
