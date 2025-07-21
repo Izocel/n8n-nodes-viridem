@@ -1,10 +1,40 @@
-import { N8NPropertiesBuilder, N8NPropertiesBuilderConfig } from '@devlikeapro/n8n-openapi-node';
+import {
+	N8NPropertiesBuilder,
+	N8NPropertiesBuilderConfig,
+	Override,
+} from '@devlikeapro/n8n-openapi-node';
 import { INodeType, INodeTypeDescription } from 'n8n-workflow';
 import * as doc from '../assets/openapi.json';
 
 const config: N8NPropertiesBuilderConfig = {};
+
+// Override for statusIn[] parameter to handle array input properly
+const overrides: Override[] = [
+	{
+		find: {
+			name: 'statusIn[]',
+		},
+		replace: {
+			type: 'string',
+			displayName: 'Status In',
+			description:
+				'Comma-separated list of status IDs to filter by (e.g., "1,2,3"). Leave empty to include all statuses.',
+			default: '1,2,3',
+			routing: {
+				send: {
+					type: 'query',
+					property: 'statusIn',
+					value:
+						'={{ $value ? $value.split(",").map(s => parseInt(s.trim())).filter(s => !isNaN(s)) : [] }}',
+					propertyInDotNotation: false,
+				},
+			},
+		},
+	},
+];
+
 const parser = new N8NPropertiesBuilder(doc, config);
-const properties = parser.build();
+const properties = parser.build(overrides);
 
 export class Viridem implements INodeType {
 	description: INodeTypeDescription = {
