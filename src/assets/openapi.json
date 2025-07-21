@@ -191,12 +191,9 @@
 										"type": "string"
 									},
 									"document_title": {
-										"type": "string",
+										"type": "array",
 										"items": {
-											"type": "array",
-											"items": {
-												"$ref": "#/components/schemas/aiExpenseResultItem"
-											}
+											"$ref": "#/components/schemas/aiExpenseResultItem"
 										}
 									}
 								}
@@ -1865,9 +1862,13 @@
 					},
 					"bbox": {
 						"type": "array",
-						"example": ["100,100,100,100"],
 						"minItems": 4,
-						"maxItems": 4
+						"maxItems": 4,
+						"description": "Bounding box of the annotation in the format [x, y, width, height]",
+						"example": [100, 100, 200, 50],
+						"items": {
+							"type": "number"
+						}
 					}
 				}
 			},
@@ -5233,6 +5234,7 @@
 					{
 						"name": "id",
 						"in": "path",
+						"required": true,
 						"schema": {
 							"type": "integer"
 						}
