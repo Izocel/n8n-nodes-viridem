@@ -4373,6 +4373,16 @@
 							"type": "integer"
 						},
 						"required": true
+					},
+					{
+						"in": "query",
+						"name": "statusFilter",
+						"schema": {
+							"type": "string",
+							"default": "enabled",
+							"enum": ["enabled", "disabled", "any"]
+						},
+						"required": true
 					}
 				],
 				"responses": {
